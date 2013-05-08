@@ -4,12 +4,14 @@ public class CodeInstance implements Comparable<CodeInstance>
 	private String instanceName;
 	private String packageName;
 	private String type;
+	private String callMethod;
 	
 	public CodeInstance()
 	{
 		this.instanceName = null;
 		this.packageName = null;
 		this.type = null;
+		this.callMethod = null;
 	}
 	
 	public CodeInstance(String instanceName, String packageName, String type)
@@ -17,10 +19,16 @@ public class CodeInstance implements Comparable<CodeInstance>
 		this.instanceName = instanceName;
 		this.packageName = packageName;
 		this.type = type;
+		this.callMethod = null;
 		
 	}
 	
 	//Setters
+	public void setCallMethod(String callMethod)
+	{
+		this.callMethod = callMethod;
+	}
+	
 	public void setInstanceName(String instanceName)
 	{
 		this.instanceName = instanceName;
@@ -37,6 +45,10 @@ public class CodeInstance implements Comparable<CodeInstance>
 	}
 	
 	//Accessors
+	public String getCallMethod()
+	{
+		return this.callMethod;
+	}
 	public String getInstanceName()
 	{
 		return this.instanceName;
@@ -55,7 +67,7 @@ public class CodeInstance implements Comparable<CodeInstance>
 	@Override
 	public int compareTo(CodeInstance o) {
 		// TODO Auto-generated method stub
-		return this.instanceName.compareTo(o.getInstanceName());
+		return 1;
 	}
 	
 }
