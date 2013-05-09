@@ -23,6 +23,23 @@ public class CodeInstance implements Comparable<CodeInstance>
 		
 	}
 	
+	public CodeInstance(CodeInstance codeInstance)
+	{
+		this.instanceName = codeInstance.getInstanceName();
+		this.packageName = codeInstance.getPackageName();
+		this.type = codeInstance.getType();
+		this.callMethod = codeInstance.getCallMethod();
+		
+	}
+	
+	public CodeInstance(String instanceName, String packageName, String type, String callMethod)
+	{
+		this.instanceName = instanceName;
+		this.packageName = packageName;
+		this.type = type;
+		this.callMethod = callMethod;
+		
+	}
 	//Setters
 	public void setCallMethod(String callMethod)
 	{
