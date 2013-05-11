@@ -14,29 +14,69 @@ public class SmaliScanner {
 		{
 			findInstanceCall();
 		}
-		else if(this.instance.getValue().getType().matches("storedVar"))
+		else if(this.instance.getValue().getType().matches("storedVar") || this.instance.getValue().getType().matches("move-result-object"))
 		{
-			SmaliIO io = new SmaliIO();
-			ArrayList<String> fileText = io.getFileText(this.instance.getValue().getFile());
 			
-			if(fileText.get(instance.getValue().getLine() + 2).contains("move-result-object"))
-			{
-				System.out.println("entered");
-				CodeInstance newInstance = new CodeInstance(instance.getValue());
-				newInstance.setType("move-result-object");
-				this.spawnedInstances.add(instance.addChild(newInstance));
-			}
-			else
-			{
-				trace();
-			}
-			
+			trace();
+					
 		}
 	}
 	
 	private void trace() 
 	{
-			
+		SmaliIO io = new SmaliIO();
+		ArrayList<String> fileText = io.getFileText(this.instance.getValue().getFile());
+		
+		
+		for(int i = instance.getValue().getLine() + 1; fileText.get(i).contains(".end method") == false; i++)
+		{
+				
+				
+				if(fileText.get(i).contains("return-object" + " " + instance.getValue().getInstanceName()))
+				{
+					CodeInstance endInstance = new CodeInstance(instance.getValue());
+					endInstance.setType("return-object");
+					Node<CodeInstance> newNodeInstance = instance.addChild(endInstance);
+					CodeInstance newInstance = new CodeInstance(instance.getValue().getCallMethod(), instance.getValue().getFile().toString(), ".invoke" );
+					this.spawnedInstances.add(newNodeInstance.addChild(newInstance));
+					
+				}
+				else if(fileText.get(i).contains("move-result-object " + instance.getValue().getInstanceName()) || fileText.get(i).contains("new-instance " + instance.getValue().getInstanceName()))
+				{
+					System.out.println(instance.getValue().getInstanceName());
+					CodeInstance endInstance = new CodeInstance(instance.getValue());
+					endInstance.setType("overwritten");
+					Node<CodeInstance> newNodeInstance = instance.addChild(endInstance);
+					break;
+				}
+				else if(fileText.get(i).contains(".end local " + instance.getValue().getInstanceName()))
+				{
+					System.out.println(instance.getValue().getInstanceName());
+					CodeInstance endInstance = new CodeInstance(instance.getValue());
+					endInstance.setType("destroyed");
+					Node<CodeInstance> newNodeInstance = instance.addChild(endInstance);
+					break;
+				}
+				else if(fileText.get(i).contains(this.instance.getValue().getInstanceName()))
+				{
+					//System.out.println("entered; " + fileText.get(i));
+					SmaliLineParser parser = new SmaliLineParser();
+					CodeObject o = parser.parse(fileText.get(i));
+					if(o.getPassedVar().contains(this.instance.getValue().getInstanceName()))
+					{
+						//System.out.println("entered; " + fileText.get(i));
+						CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
+						Node<CodeInstance> newNodeInstance = instance.addChild(newInstance);
+						
+						this.spawnedInstances.add(newNodeInstance);
+						
+					}
+					
+				}
+				
+		}
+		
+		
 		
 	}
 
@@ -56,7 +96,27 @@ public class SmaliScanner {
 			int lineNumber = findInstanceLine(fileText);
 			instance.getValue().setLine(lineNumber);		
 			findMethod(lineNumber, fileText);
-			getStoredVarible(fileText.get(lineNumber));
+			Node<CodeInstance> newNodeInstance = instance.addChild(new CodeInstance(findStoredVarible(fileText.get(lineNumber)), findPackageName(fileText.get(lineNumber)), "storedVar", this.instance.getValue().getCallMethod(), this.instance.getValue().getFile(), this.instance.getValue().getLine()));
+			
+			if(fileText.get(instance.getValue().getLine() + 2).contains("move-result-object"))
+			{
+				CodeInstance newInstance = new CodeInstance(newNodeInstance.getValue());
+				//newInstance.setPackageName(findPackageName(fileText.get(newNodeInstance.getValue().getLine() + 2)));
+				newInstance.setInstanceName(findStoredVarible(fileText.get(newNodeInstance.getValue().getLine() + 2)));
+				newInstance.setType("move-result-object");
+				newInstance.setLine(newNodeInstance.getValue().getLine() + 2);
+				this.spawnedInstances.add(newNodeInstance.addChild(newInstance));
+				
+				CodeInstance endInstance = new CodeInstance(newNodeInstance.getValue());
+				endInstance.setType("overwritten");
+				newNodeInstance.addChild(endInstance);
+				
+			}
+			else
+			{
+				this.spawnedInstances.add(newNodeInstance);
+			}
+			
 		}
 		
 	}
@@ -73,7 +133,17 @@ public class SmaliScanner {
 		return -1;
 	}
 
-	private void getStoredVarible(String currentLine) {
+	private String findPackageName(String currentLine)
+	{
+		currentLine = currentLine.trim();
+		String[] elements = currentLine.split(" ");
+			
+		String packageName = elements[elements.length - 1];
+		packageName = packageName.substring(packageName.indexOf(")") + 1);
+		
+		return packageName;
+	}
+	private String findStoredVarible(String currentLine) {
 		
 		currentLine = currentLine.trim();
 		String[] elements = currentLine.split(" ");
@@ -82,7 +152,7 @@ public class SmaliScanner {
 		String packageName = elements[elements.length - 1];
 		packageName = packageName.substring(packageName.indexOf(")") + 1);
 		
-		this.spawnedInstances.add(instance.addChild(new CodeInstance(varName, packageName, "storedVar", this.instance.getValue().getCallMethod(), this.instance.getValue().getFile(), this.instance.getValue().getLine())));
+		return varName;
 		
 		
 	}
@@ -106,6 +176,7 @@ public class SmaliScanner {
 						this.instance.getValue().setCallMethod(methName);
 					}
 				}
+				break;
 			}
 		}
 	}
