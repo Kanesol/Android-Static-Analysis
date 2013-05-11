@@ -1,3 +1,5 @@
+import java.nio.file.Path;
+
 
 public class CodeInstance implements Comparable<CodeInstance>
 {
@@ -5,6 +7,8 @@ public class CodeInstance implements Comparable<CodeInstance>
 	private String packageName;
 	private String type;
 	private String callMethod;
+	private Path file;
+	private int line;
 	
 	public CodeInstance()
 	{
@@ -12,6 +16,8 @@ public class CodeInstance implements Comparable<CodeInstance>
 		this.packageName = null;
 		this.type = null;
 		this.callMethod = null;
+		this.file = null;
+		this.line = -1;
 	}
 	
 	public CodeInstance(String instanceName, String packageName, String type)
@@ -20,6 +26,8 @@ public class CodeInstance implements Comparable<CodeInstance>
 		this.packageName = packageName;
 		this.type = type;
 		this.callMethod = null;
+		this.file = null;
+		this.line = -1;
 		
 	}
 	
@@ -29,18 +37,34 @@ public class CodeInstance implements Comparable<CodeInstance>
 		this.packageName = codeInstance.getPackageName();
 		this.type = codeInstance.getType();
 		this.callMethod = codeInstance.getCallMethod();
+		this.file = codeInstance.getFile();
+		this.line = codeInstance.getLine();
 		
 	}
 	
-	public CodeInstance(String instanceName, String packageName, String type, String callMethod)
+
+	public CodeInstance(String instanceName, String packageName, String type, String callMethod, Path file, int line)
 	{
 		this.instanceName = instanceName;
 		this.packageName = packageName;
 		this.type = type;
 		this.callMethod = callMethod;
+		this.file = file;
+		this.line = line;
 		
 	}
+	
 	//Setters
+	public void setLine(int line)
+	{
+		this.line = line;
+	}
+	
+	public void setFile(Path file)
+	{
+		this.file = file;
+	}
+	
 	public void setCallMethod(String callMethod)
 	{
 		this.callMethod = callMethod;
@@ -62,6 +86,10 @@ public class CodeInstance implements Comparable<CodeInstance>
 	}
 	
 	//Accessors
+	public int getLine()
+	{
+		return this.line;
+	}
 	public String getCallMethod()
 	{
 		return this.callMethod;
@@ -79,6 +107,11 @@ public class CodeInstance implements Comparable<CodeInstance>
 	public String getType()
 	{
 		return this.type;
+	}
+	
+	public Path getFile() 
+	{
+		return this.file;
 	}
 
 	@Override

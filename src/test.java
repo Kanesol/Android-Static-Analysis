@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Stack;
+
 
 public class test
 {
@@ -5,17 +8,42 @@ public class test
 	{
 		Tree<CodeInstance> tree = new Tree<CodeInstance>();
 		Node<CodeInstance> rootNode = tree.getRootElement();
+		Stack<Node<CodeInstance>> stack = new Stack<Node<CodeInstance>>();
 		
 		//manual process
 		
-		CodeInstance a = new CodeInstance("getDeviceID", "Telephony", ".invoke");
-		a.setCallMethod("getIndividualNum");
+		CodeInstance initialR = new CodeInstance("getDeviceId", "Landroid/telephony/TelephonyManager", ".invoke");
+		rootNode.setValue(initialR);
+		SmaliScanner intialScanner = new SmaliScanner(rootNode);
+		//intialScanner.setInstance(rootNode);
+		//intialScanner.run();
 		
-		rootNode.setValue(a);
 		
-		CodeInstance b = new CodeInstance("v0", "String", "storedVar", "getIndividualNum");
+		ArrayList<Node<CodeInstance>> initialSpawns = intialScanner.getSpawnedInstances();
+		for(Node<CodeInstance> instance : initialSpawns)
+		{
+			stack.push(instance);
+		}
 		
-		Node<CodeInstance> childNode = rootNode.addChild(b);
+		SmaliScanner scanner;
+				
+		while(stack.empty() == false)
+		{
+			
+			Node<CodeInstance> currentItem = stack.pop();
+			
+			
+			scanner = new SmaliScanner(currentItem);
+			ArrayList<Node<CodeInstance>> spawns = scanner.getSpawnedInstances();
+			
+			for(Node<CodeInstance> instance : spawns)
+			{
+				System.out.println(instance.getValue().getInstanceName());
+				stack.push(instance);
+			}
+		}
+		
+		/*Node<CodeInstance> childNode = rootNode.addChild(instance);
 		
 		CodeInstance x = new CodeInstance("v0", "String", ".move-result-object", "getIndividualNum");
 		x.setType(".return-object");
@@ -120,11 +148,10 @@ public class test
 		CodeInstance t = new CodeInstance(r);
 		t.setType(".endMethod");
 		Node<CodeInstance> childNode20 = childNode19.addChild(t);
+		*/
 		
 		
-		
-		//Node<CodeInstance> newChildNode = rootNode.addChild(c);
-		//newChildNode.addChild(c);
+
 		tree.visitNodes(new NodeVisitor<CodeInstance>(){
 
 			@Override

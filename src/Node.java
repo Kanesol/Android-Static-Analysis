@@ -21,7 +21,7 @@ public class Node<T> {
         children =
             new TreeSet<Node<T>>(new NodeComparator<T>((Comparator<T>) comparator));
     }
-
+    
     public List<Node<T>> getChildren(){
         return new ArrayList<Node<T>>(children);
     }
@@ -41,5 +41,10 @@ public class Node<T> {
     public Node<T> addChild(  T value){
           Node<T> node = new Node<T>(value, this, comparator);
         return children.add(node) ? node : null;
+    }
+    
+    public void setParent(Node<T> parent)
+    {
+    	this.parent = parent;
     }
 }
