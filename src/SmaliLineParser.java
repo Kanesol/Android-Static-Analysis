@@ -17,7 +17,6 @@ public class SmaliLineParser {
 	{
 		CodeObject o = new CodeObject();
 		line = line.trim();
-		System.out.println(line);
 		String[] elements = line.split(" ");
 		o.setType(elements[0]);
 		String PackageMethodReturn = elements[elements.length - 1];
@@ -31,7 +30,6 @@ public class SmaliLineParser {
 		o.setPackageName(packageMethod[0]);
 		
 		String[] a = toParse.split("->");
-		System.out.println(toParse);
 		//System.out.println(a.length);
 		a = a[1].split("\\(");
 		a = a[1].replace(")", "").split(";");

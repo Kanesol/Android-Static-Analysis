@@ -1,3 +1,5 @@
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 
@@ -16,19 +18,44 @@ public class SmaliScanner {
 		}
 		else if(this.instance.getValue().getType().matches("storedVar") || this.instance.getValue().getType().matches("move-result-object"))
 		{
-			
 			trace();
-					
+		}
+		else if(this.instance.getValue().getType().matches(".method"))
+		{
+			findPassedReference();
 		}
 	}
 	
+	private void findPassedReference()
+	{
+		SmaliIO io = new SmaliIO();
+		ArrayList<String> fileText = io.getFileText(this.instance.getValue().getFile());
+		boolean t = false;
+		for(int i = 0; i < fileText.size(); i++)
+		{
+			
+			if(fileText.get(i).contains(this.instance.getValue().getInstanceName()))
+			{
+				this.instance.getValue().setLine(i);
+				t = true;
+				
+			}else if( i > this.instance.getValue().getLine() && fileText.get(i).contains(".local ") && t == true)
+			{
+				String[] s = fileText.get(i).trim().split(" ");
+				CodeInstance newInstance = new CodeInstance(s[1].replace(",", ""), null, "storedVar", this.instance.getValue().getInstanceName(), this.instance.getValue().getFile(), i );
+				this.spawnedInstances.add(this.instance.addChild(newInstance));
+				break;
+			}
+		}
+	}
+
 	private void trace() 
 	{
 		SmaliIO io = new SmaliIO();
 		ArrayList<String> fileText = io.getFileText(this.instance.getValue().getFile());
 		
 		
-		for(int i = instance.getValue().getLine() + 1; fileText.get(i).contains(".end method") == false; i++)
+		for(int i = instance.getValue().getLine() + 1; fileText.get(i-1).contains(".end method") == false; i++)
 		{
 				
 				
@@ -43,19 +70,39 @@ public class SmaliScanner {
 				}
 				else if(fileText.get(i).contains("move-result-object " + instance.getValue().getInstanceName()) || fileText.get(i).contains("new-instance " + instance.getValue().getInstanceName()))
 				{
-					System.out.println(instance.getValue().getInstanceName());
+					//System.out.println(instance.getValue().getInstanceName());
 					CodeInstance endInstance = new CodeInstance(instance.getValue());
 					endInstance.setType("overwritten");
-					Node<CodeInstance> newNodeInstance = instance.addChild(endInstance);
+					instance.addChild(endInstance);
 					break;
 				}
 				else if(fileText.get(i).contains(".end local " + instance.getValue().getInstanceName()))
 				{
-					System.out.println(instance.getValue().getInstanceName());
+					//System.out.println(instance.getValue().getInstanceName());
 					CodeInstance endInstance = new CodeInstance(instance.getValue());
 					endInstance.setType("destroyed");
-					Node<CodeInstance> newNodeInstance = instance.addChild(endInstance);
+					instance.addChild(endInstance);
 					break;
+				}
+				else if(fileText.get(i).contains(".end method" ))
+				{
+					//System.out.println(instance.getValue().getInstanceName());
+					CodeInstance endInstance = new CodeInstance(instance.getValue());
+					endInstance.setType("destroyed");
+					instance.addChild(endInstance);
+					break;
+				}
+				else if(fileText.get(i).contains(this.instance.getValue().getInstanceName()) && fileText.get(i).contains("if-nez"))
+				{
+					String[] s = fileText.get(i).trim().split(" ");
+					for(int j = i + 1; fileText.get(j).contains(".end method") == false; j++)
+					{
+						if(fileText.get(j).contains(s[2]))
+						{
+							i=j;
+							break;
+						}
+					}
 				}
 				else if(fileText.get(i).contains(this.instance.getValue().getInstanceName()))
 				{
@@ -64,11 +111,28 @@ public class SmaliScanner {
 					CodeObject o = parser.parse(fileText.get(i));
 					if(o.getPassedVar().contains(this.instance.getValue().getInstanceName()))
 					{
-						//System.out.println("entered; " + fileText.get(i));
-						CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
-						Node<CodeInstance> newNodeInstance = instance.addChild(newInstance);
+						if(o.getPackageName().contains("Ljava/") != true && o.getPackageName().contains("Lorg/apache/") != true)
+						{
+							CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
+							this.spawnedInstances.add(instance.addChild(newInstance));
+							//System.out.println(fileText.get(i));
+							Path path = FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\" + o.getPackageName().substring(1) + ".smali");
+							newInstance = new CodeInstance(o.getMethodName(), o.getPackageName(), ".method", o.getPackageName(), path, i);
+							this.spawnedInstances.add(instance.addChild(newInstance));
+						}
+						else if(o.getPackageName().contains("Ljava/util/List") && o.getMethodName().contains("add") && o.getReturnVar().contains(this.instance.getValue().getInstanceName()))
+						{
+							
+						}
+						else
+						{
+							//System.out.println("entered; " + fileText.get(i));
+							CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
+							Node<CodeInstance> newNodeInstance = instance.addChild(newInstance);
+							
+							this.spawnedInstances.add(newNodeInstance);
+						}
 						
-						this.spawnedInstances.add(newNodeInstance);
 						
 					}
 					
