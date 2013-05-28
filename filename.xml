@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<node>
+	<instanceName> getDeviceId</instanceName>
+	<callMethod> getIndividualNo</callMethod>
+	<packageName> Landroid/telephony/TelephonyManager</packageName>
+	<type> .invoke</type>
+
+	<node>
+		<instanceName> v0</instanceName>
+		<callMethod> getIndividualNo</callMethod>
+		<packageName> Ljava/lang/String;</packageName>
+		<type> storedVar</type>
+	
+		<node>
+			<instanceName> v0</instanceName>
+			<callMethod> getIndividualNo</callMethod>
+			<packageName> Ljava/lang/String;</packageName>
+			<type> move-result-object</type>
+		
+			<node>
+				<instanceName> v0</instanceName>
+				<callMethod> getIndividualNo</callMethod>
+				<packageName> Ljava/lang/String;</packageName>
+				<type> return-object</type>
+			
+				<node>
+					<instanceName> getIndividualNo</instanceName>
+					<callMethod> run</callMethod>
+					<packageName> com\link\uranai\util\PhoneUtil.smali</packageName>
+					<type> .invoke</type>
+				
+					<node>
+						<instanceName> v0</instanceName>
+						<callMethod> run</callMethod>
+						<packageName> Ljava/lang/String;</packageName>
+						<type> storedVar</type>
+					
+						<node>
+							<instanceName> v7</instanceName>
+							<callMethod> run</callMethod>
+							<packageName> Ljava/lang/String;</packageName>
+							<type> move-result-object</type>
+						
+							<node>
+								<instanceName> v5</instanceName>
+								<callMethod> run</callMethod>
+								<packageName> Lorg/apache/http/message/BasicNameValuePair</packageName>
+								<type> storedVar</type>
+							
+								<node>
+									<instanceName> v3</instanceName>
+									<callMethod> run</callMethod>
+									<packageName> Ljava/util/List</packageName>
+									<type> storedVar</type>
+								
+									<node>
+										<instanceName> v4</instanceName>
+										<callMethod> run</callMethod>
+										<packageName> com\link\uranai\Answer$1.smali</packageName>
+										<type> storedVar</type>
+									
+										<node>
+											<instanceName> v4</instanceName>
+											<callMethod> run</callMethod>
+											<packageName> com\link\uranai\Answer$1.smali</packageName>
+											<type> destroyed</type>
+										</node></node>
+									<node>
+										<instanceName> doPost</instanceName>
+										<callMethod> Lcom/link/uranai/util/HttpUtil</callMethod>
+										<packageName> Lcom/link/uranai/util/HttpUtil</packageName>
+										<type> .method</type>
+									
+										<node>
+											<instanceName> p1</instanceName>
+											<callMethod> doPost</callMethod>
+											<packageName> null</packageName>
+											<type> storedVar</type>
+										
+											<node>
+												<instanceName> v6</instanceName>
+												<callMethod> doPost</callMethod>
+												<packageName> Lorg/apache/http/client/entity/UrlEncodedFormEntity</packageName>
+												<type> storedVar</type>
+											
+												<node>
+													<instanceName> v3</instanceName>
+													<callMethod> doPost</callMethod>
+													<packageName> Lorg/apache/http/client/methods/HttpPost</packageName>
+													<type> storedVar</type>
+												
+													<node>
+														<instanceName> v2</instanceName>
+														<callMethod> doPost</callMethod>
+														<packageName> Lorg/apache/http/client/HttpClient</packageName>
+														<type> storedVar</type>
+													
+														<node>
+															<instanceName> v2</instanceName>
+															<callMethod> doPost</callMethod>
+															<packageName> Lorg/apache/http/client/HttpClient</packageName>
+															<type> destroyed</type>
+														</node></node>
+													<node>
+														<instanceName> v3</instanceName>
+														<callMethod> doPost</callMethod>
+														<packageName> Lorg/apache/http/client/methods/HttpPost</packageName>
+														<type> destroyed</type>
+													</node></node>
+												<node>
+													<instanceName> v6</instanceName>
+													<callMethod> doPost</callMethod>
+													<packageName> Lorg/apache/http/client/entity/UrlEncodedFormEntity</packageName>
+													<type> overwritten</type>
+												</node></node>
+											<node>
+												<instanceName> p1</instanceName>
+												<callMethod> doPost</callMethod>
+												<packageName> null</packageName>
+												<type> destroyed</type>
+											</node></node></node>
+									<node>
+										<instanceName> v3</instanceName>
+										<callMethod> run</callMethod>
+										<packageName> Ljava/util/List</packageName>
+										<type> destroyed</type>
+									</node></node>
+								<node>
+									<instanceName> v5</instanceName>
+									<callMethod> run</callMethod>
+									<packageName> Lorg/apache/http/message/BasicNameValuePair</packageName>
+									<type> overwritten</type>
+								</node></node>
+							<node>
+								<instanceName> v7</instanceName>
+								<callMethod> run</callMethod>
+								<packageName> Ljava/lang/String;</packageName>
+								<type> overwritten</type>
+							</node></node>
+						<node>
+							<instanceName> v0</instanceName>
+							<callMethod> run</callMethod>
+							<packageName> Ljava/lang/String;</packageName>
+							<type> overwritten</type>
+						</node></node></node></node>
+			<node>
+				<instanceName> v0</instanceName>
+				<callMethod> getIndividualNo</callMethod>
+				<packageName> Ljava/lang/String;</packageName>
+				<type> destroyed</type>
+			</node></node>
+		<node>
+			<instanceName> v0</instanceName>
+			<callMethod> getIndividualNo</callMethod>
+			<packageName> Ljava/lang/String;</packageName>
+			<type> overwritten</type>
+		</node></node></node>

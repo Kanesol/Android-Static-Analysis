@@ -1,5 +1,6 @@
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -52,6 +53,8 @@ public class SmaliScanner {
 	private void trace() 
 	{
 		SmaliIO io = new SmaliIO();
+		//System.out.println(this.instance.getValue().getFile().toString());
+		//System.out.println(this.instance.getValue().getInstanceName().toString());
 		ArrayList<String> fileText = io.getFileText(this.instance.getValue().getFile());
 		
 		
@@ -116,7 +119,8 @@ public class SmaliScanner {
 							CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
 							this.spawnedInstances.add(instance.addChild(newInstance));
 							//System.out.println(fileText.get(i));
-							Path path = FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\" + o.getPackageName().substring(1) + ".smali");
+							Path path = FileSystems.getDefault().getPath(o.getPackageName().substring(1) + ".smali");
+							//System.out.println(path.toString());
 							newInstance = new CodeInstance(o.getMethodName(), o.getPackageName(), ".method", o.getPackageName(), path, i);
 							this.spawnedInstances.add(instance.addChild(newInstance));
 						}
@@ -127,7 +131,10 @@ public class SmaliScanner {
 						else
 						{
 							//System.out.println("entered; " + fileText.get(i));
-							CodeInstance newInstance = new CodeInstance(o.getReturnVar(), instance.getValue().getFile().toString(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
+							
+							SmaliLineParser p = new SmaliLineParser();
+							CodeObject c = p.parse(fileText.get(i));
+							CodeInstance newInstance = new CodeInstance(o.getReturnVar(), c.getPackageName(), "storedVar", instance.getValue().getCallMethod(), instance.getValue().getFile(), i);
 							Node<CodeInstance> newNodeInstance = instance.addChild(newInstance);
 							
 							this.spawnedInstances.add(newNodeInstance);
@@ -149,7 +156,8 @@ public class SmaliScanner {
 		//run through and find the file that contains the call to that method
 		SmaliIO io = new SmaliIO();
 		ArrayList<String> fileText = io.findInstance(instance.getValue());
-		instance.getValue().setFile(io.getFoundInstanceFilename());
+		
+		instance.getValue().setFile(Paths.get(io.getFoundInstanceFilename().toString().replace(System.getProperty("user.dir") + "\\smali\\", "")));
 		
 		if(fileText == null)
 		{

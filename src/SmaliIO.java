@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -18,6 +20,10 @@ public class SmaliIO {
 	public ArrayList<String> getFileText(Path path)
 	{
 		//Path path = FileSystems.getDefault().getPath(dir, file);
+		
+		//FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\");
+		path = FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\" + path.toString());
+		//System.out.println(path.toString());
 	    
 	    return readFile(path);
 	}
