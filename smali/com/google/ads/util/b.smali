@@ -1,4 +1,4 @@
-.class public Lcom/google/ads/util/b;
+.class public final Lcom/google/ads/util/b;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
@@ -13,7 +13,9 @@
 
 
 # static fields
-.field static final synthetic a:Z
+.field public static a:Lcom/google/ads/util/b$b;
+
+.field private static b:I
 
 
 # direct methods
@@ -21,21 +23,133 @@
     .locals 1
 
     .prologue
-    .line 29
-    const-class v0, Lcom/google/ads/util/b;
+    .line 60
+    const/4 v0, 0x0
 
-    invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
+    sput-object v0, Lcom/google/ads/util/b;->a:Lcom/google/ads/util/b$b;
+
+    .line 261
+    const/4 v0, 0x5
+
+    sput v0, Lcom/google/ads/util/b;->b:I
+
+    return-void
+.end method
+
+.method private static a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+    .locals 1
+    .parameter
+    .parameter
+
+    .prologue
+    .line 65
+    const/4 v0, 0x0
+
+    invoke-static {p0, p1, v0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 66
+    return-void
+.end method
+
+.method private static a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 1
+    .parameter
+    .parameter
+    .parameter
+
+    .prologue
+    .line 69
+    sget-object v0, Lcom/google/ads/util/b;->a:Lcom/google/ads/util/b$b;
+
+    if-eqz v0, :cond_0
+
+    .line 70
+    sget-object v0, Lcom/google/ads/util/b;->a:Lcom/google/ads/util/b$b;
+
+    invoke-interface {v0, p0, p1, p2}, Lcom/google/ads/util/b$b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 72
+    :cond_0
+    return-void
+.end method
+
+.method public static a(Ljava/lang/String;)V
+    .locals 2
+    .parameter
+
+    .prologue
+    .line 81
+    const-string v0, "Ads"
+
+    const/4 v1, 0x3
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-eqz v0, :cond_0
+
+    .line 82
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 85
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->b:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+
+    .line 86
+    return-void
+.end method
+
+.method public static a(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+    .parameter
+    .parameter
+
+    .prologue
+    .line 97
+    const-string v0, "Ads"
+
+    const/4 v1, 0x3
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 98
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 101
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->b:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0, p1}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 102
+    return-void
+.end method
+
+.method private static a(I)Z
+    .locals 1
+    .parameter
+
+    .prologue
+    .line 270
+    sget v0, Lcom/google/ads/util/b;->b:I
+
+    if-lt p0, v0, :cond_0
 
     const/4 v0, 0x1
 
     :goto_0
-    sput-boolean v0, Lcom/google/ads/util/b;->a:Z
-
-    return-void
+    return v0
 
     :cond_0
     const/4 v0, 0x0
@@ -43,152 +157,253 @@
     goto :goto_0
 .end method
 
-.method private constructor <init>()V
-    .locals 0
-
-    .prologue
-    .line 783
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 784
-    return-void
-.end method
-
-.method public static a([B)Ljava/lang/String;
-    .locals 6
+.method public static a(Ljava/lang/String;I)Z
+    .locals 1
+    .parameter
     .parameter
 
     .prologue
-    .line 471
-    :try_start_0
-    new-instance v2, Ljava/lang/String;
+    .line 256
+    invoke-static {p1}, Lcom/google/ads/util/b;->a(I)Z
 
-    array-length v3, p0
+    move-result v0
 
-    new-instance v4, Lcom/google/ads/util/b$b;
+    if-nez v0, :cond_0
 
-    invoke-direct {v4}, Lcom/google/ads/util/b$b;-><init>()V
+    invoke-static {p0, p1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
-    div-int/lit8 v0, v3, 0x3
-
-    mul-int/lit8 v1, v0, 0x4
-
-    iget-boolean v0, v4, Lcom/google/ads/util/b$b;->d:Z
+    move-result v0
 
     if-eqz v0, :cond_1
 
-    rem-int/lit8 v0, v3, 0x3
-
-    if-lez v0, :cond_0
-
-    add-int/lit8 v1, v1, 0x4
-
     :cond_0
-    :goto_0
-    :pswitch_0
-    iget-boolean v0, v4, Lcom/google/ads/util/b$b;->e:Z
-
-    if-eqz v0, :cond_4
-
-    if-lez v3, :cond_4
-
-    add-int/lit8 v0, v3, -0x1
-
-    div-int/lit8 v0, v0, 0x39
-
-    add-int/lit8 v5, v0, 0x1
-
-    iget-boolean v0, v4, Lcom/google/ads/util/b$b;->f:Z
-
-    if-eqz v0, :cond_2
-
-    const/4 v0, 0x2
-
-    :goto_1
-    mul-int/2addr v0, v5
-
-    add-int/2addr v0, v1
-
-    :goto_2
-    new-array v1, v0, [B
-
-    iput-object v1, v4, Lcom/google/ads/util/b$b;->a:[B
-
-    invoke-virtual {v4, p0, v3}, Lcom/google/ads/util/b$b;->a([BI)Z
-
-    sget-boolean v1, Lcom/google/ads/util/b;->a:Z
-
-    if-nez v1, :cond_3
-
-    iget v1, v4, Lcom/google/ads/util/b$b;->b:I
-
-    if-eq v1, v0, :cond_3
-
-    new-instance v0, Ljava/lang/AssertionError;
-
-    invoke-direct {v0}, Ljava/lang/AssertionError;-><init>()V
-
-    throw v0
-    :try_end_0
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 473
-    :catch_0
-    move-exception v0
-
-    .line 475
-    new-instance v1, Ljava/lang/AssertionError;
-
-    invoke-direct {v1, v0}, Ljava/lang/AssertionError;-><init>(Ljava/lang/Object;)V
-
-    throw v1
-
-    .line 471
-    :cond_1
-    :try_start_1
-    rem-int/lit8 v0, v3, 0x3
-
-    packed-switch v0, :pswitch_data_0
-
-    goto :goto_0
-
-    :pswitch_1
-    add-int/lit8 v1, v1, 0x2
-
-    goto :goto_0
-
-    :pswitch_2
-    add-int/lit8 v1, v1, 0x3
-
-    goto :goto_0
-
-    :cond_2
     const/4 v0, 0x1
 
-    goto :goto_1
+    :goto_0
+    return v0
 
-    :cond_3
-    iget-object v0, v4, Lcom/google/ads/util/b$b;->a:[B
+    :cond_1
+    const/4 v0, 0x0
 
-    const-string v1, "US-ASCII"
+    goto :goto_0
+.end method
 
-    invoke-direct {v2, v0, v1}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
-    :try_end_1
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_1 .. :try_end_1} :catch_0
+.method public static b(Ljava/lang/String;)V
+    .locals 2
+    .parameter
 
-    return-object v2
+    .prologue
+    .line 112
+    const-string v0, "Ads"
 
-    :cond_4
-    move v0, v1
+    const/4 v1, 0x6
 
-    goto :goto_2
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
 
-    nop
+    move-result v0
 
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_0
-        :pswitch_1
-        :pswitch_2
-    .end packed-switch
+    if-eqz v0, :cond_0
+
+    .line 113
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 116
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->e:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+
+    .line 117
+    return-void
+.end method
+
+.method public static b(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+    .parameter
+    .parameter
+
+    .prologue
+    .line 128
+    const-string v0, "Ads"
+
+    const/4 v1, 0x6
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 129
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 132
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->e:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0, p1}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 133
+    return-void
+.end method
+
+.method public static c(Ljava/lang/String;)V
+    .locals 2
+    .parameter
+
+    .prologue
+    .line 143
+    const-string v0, "Ads"
+
+    const/4 v1, 0x4
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 144
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 147
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->c:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+
+    .line 148
+    return-void
+.end method
+
+.method public static c(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+    .parameter
+    .parameter
+
+    .prologue
+    .line 160
+    const-string v0, "Ads"
+
+    const/4 v1, 0x4
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 161
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0, p1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 164
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->c:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0, p1}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 165
+    return-void
+.end method
+
+.method public static d(Ljava/lang/String;)V
+    .locals 2
+    .parameter
+
+    .prologue
+    .line 175
+    const-string v0, "Ads"
+
+    const/4 v1, 0x2
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 176
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 179
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->a:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+
+    .line 180
+    return-void
+.end method
+
+.method public static d(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+    .parameter
+    .parameter
+
+    .prologue
+    .line 237
+    const-string v0, "Ads"
+
+    const/4 v1, 0x5
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 238
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 241
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->d:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0, p1}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    .line 242
+    return-void
+.end method
+
+.method public static e(Ljava/lang/String;)V
+    .locals 2
+    .parameter
+
+    .prologue
+    .line 206
+    const-string v0, "Ads"
+
+    const/4 v1, 0x5
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/b;->a(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 207
+    const-string v0, "Ads"
+
+    invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 210
+    :cond_0
+    sget-object v0, Lcom/google/ads/util/b$a;->d:Lcom/google/ads/util/b$a;
+
+    invoke-static {v0, p0}, Lcom/google/ads/util/b;->a(Lcom/google/ads/util/b$a;Ljava/lang/String;)V
+
+    .line 211
+    return-void
 .end method

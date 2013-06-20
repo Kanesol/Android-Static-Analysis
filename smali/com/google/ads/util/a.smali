@@ -1,264 +1,301 @@
-.class public final Lcom/google/ads/util/a;
+.class public Lcom/google/ads/util/a;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/google/ads/util/a$a;
+    }
+.end annotation
+
+
+# static fields
+.field private static a:Z
+
+
 # direct methods
-.method private constructor <init>()V
-    .locals 0
-
-    .prologue
-    .line 19
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 21
-    return-void
-.end method
-
-.method public static a(Ljava/lang/String;)V
+.method static constructor <clinit>()V
     .locals 2
-    .parameter
 
     .prologue
-    .line 31
-    const-string v0, "Ads"
+    .line 33
+    const-string v0, "GoogleAdsAssertion"
 
     const/4 v1, 0x3
 
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    invoke-static {v0, v1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    sput-boolean v0, Lcom/google/ads/util/a;->a:Z
 
-    .line 32
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 34
-    :cond_0
     return-void
 .end method
 
-.method public static a(Ljava/lang/String;Ljava/lang/Throwable;)V
-    .locals 2
-    .parameter
-    .parameter
-
-    .prologue
-    .line 72
-    const-string v0, "Ads"
-
-    const/4 v1, 0x6
-
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 73
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 75
-    :cond_0
-    return-void
-.end method
-
-.method public static a(Ljava/lang/Throwable;)V
+.method public static a(Ljava/lang/Object;)V
     .locals 2
     .parameter
 
     .prologue
-    .line 153
-    const-string v0, "Ads"
+    .line 53
+    if-nez p0, :cond_0
 
-    const/4 v1, 0x5
+    const/4 v0, 0x1
 
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    :goto_0
+    const-string v1, "Assertion that an object is null failed."
 
-    move-result v0
+    invoke-static {v0, v1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
 
-    if-eqz v0, :cond_0
-
-    .line 154
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 156
-    :cond_0
+    .line 55
     return-void
+
+    .line 53
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
 .end method
 
-.method private static a(Ljava/lang/String;I)Z
+.method public static a(Ljava/lang/Object;Ljava/lang/Object;)V
     .locals 3
     .parameter
     .parameter
 
     .prologue
-    const/4 v1, 0x1
+    .line 71
+    if-ne p0, p1, :cond_0
 
-    const/4 v0, 0x0
-
-    .line 184
-    const/4 v2, 0x5
-
-    if-lt p1, v2, :cond_2
-
-    move v2, v1
+    const/4 v0, 0x1
 
     :goto_0
-    if-nez v2, :cond_0
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    invoke-static {p0, p1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result v2
+    const-string v2, "Assertion that \'a\' and \'b\' refer to the same object failed.a: "
 
-    if-eqz v2, :cond_1
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    move-result-object v1
+
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, ", b: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
+
+    .line 74
+    return-void
+
+    .line 71
     :cond_0
-    move v0, v1
-
-    :cond_1
-    return v0
-
-    :cond_2
-    move v2, v0
+    const/4 v0, 0x0
 
     goto :goto_0
 .end method
 
-.method public static b(Ljava/lang/String;)V
-    .locals 2
+.method public static a(Ljava/lang/String;)V
+    .locals 3
     .parameter
 
     .prologue
-    .line 58
-    const-string v0, "Ads"
-
-    const/4 v1, 0x6
-
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    .line 91
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-nez v0, :cond_0
 
-    .line 59
-    const-string v0, "Ads"
+    const/4 v0, 0x1
 
-    invoke-static {v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    :goto_0
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    .line 61
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Expected a non empty string, got: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
+
+    .line 93
+    return-void
+
+    .line 91
     :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static a(Z)V
+    .locals 1
+    .parameter
+
+    .prologue
+    .line 37
+    const-string v0, "Assertion failed."
+
+    invoke-static {p0, v0}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
+
+    .line 38
     return-void
 .end method
 
-.method public static b(Ljava/lang/String;Ljava/lang/Throwable;)V
-    .locals 2
+.method public static a(ZLjava/lang/String;)V
+    .locals 0
     .parameter
     .parameter
 
     .prologue
-    .line 167
-    const-string v0, "Ads"
+    .line 41
+    invoke-static {p0, p1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
 
-    const/4 v1, 0x5
-
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 168
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 170
-    :cond_0
+    .line 42
     return-void
 .end method
 
-.method public static c(Ljava/lang/String;)V
+.method public static b(Ljava/lang/Object;)V
     .locals 2
     .parameter
 
     .prologue
-    .line 85
-    const-string v0, "Ads"
+    .line 62
+    if-eqz p0, :cond_0
 
-    const/4 v1, 0x4
+    const/4 v0, 0x1
 
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    :goto_0
+    const-string v1, "Assertion that an object is not null failed."
 
-    move-result v0
+    invoke-static {v0, v1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
 
-    if-eqz v0, :cond_0
-
-    .line 86
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 88
-    :cond_0
+    .line 64
     return-void
+
+    .line 62
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
 .end method
 
-.method public static d(Ljava/lang/String;)V
+.method public static b(Z)V
     .locals 2
     .parameter
 
     .prologue
-    .line 113
-    const-string v0, "Ads"
+    .line 45
+    if-nez p0, :cond_0
 
-    const/4 v1, 0x2
+    const/4 v0, 0x1
 
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    :goto_0
+    const-string v1, "Assertion failed."
+
+    invoke-static {v0, v1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
+
+    .line 46
+    return-void
+
+    .line 45
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method public static b(ZLjava/lang/String;)V
+    .locals 1
+    .parameter
+    .parameter
+
+    .prologue
+    .line 49
+    if-nez p0, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    invoke-static {v0, p1}, Lcom/google/ads/util/a;->c(ZLjava/lang/String;)V
+
+    .line 50
+    return-void
+
+    .line 49
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+.end method
+
+.method private static c(ZLjava/lang/String;)V
+    .locals 2
+    .parameter
+    .parameter
+
+    .prologue
+    .line 107
+    const-string v0, "GoogleAdsAssertion"
+
+    const/4 v1, 0x3
+
+    invoke-static {v0, v1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-nez v0, :cond_1
 
-    .line 114
-    const-string v0, "Ads"
+    sget-boolean v0, Lcom/google/ads/util/a;->a:Z
 
-    invoke-static {v0, p0}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+    if-nez v0, :cond_1
 
     .line 116
     :cond_0
     return-void
-.end method
 
-.method public static e(Ljava/lang/String;)V
-    .locals 2
-    .parameter
+    .line 111
+    :cond_1
+    if-nez p0, :cond_0
 
-    .prologue
-    .line 140
-    const-string v0, "Ads"
+    .line 112
+    new-instance v0, Lcom/google/ads/util/a$a;
 
-    const/4 v1, 0x5
+    invoke-direct {v0, p1}, Lcom/google/ads/util/a$a;-><init>(Ljava/lang/String;)V
 
-    invoke-static {v0, v1}, Lcom/google/ads/util/a;->a(Ljava/lang/String;I)Z
+    .line 113
+    const-string v1, "GoogleAdsAssertion"
 
-    move-result v0
+    invoke-static {v1, p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    if-eqz v0, :cond_0
-
-    .line 141
-    const-string v0, "Ads"
-
-    invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 143
-    :cond_0
-    return-void
+    .line 114
+    throw v0
 .end method

@@ -1,78 +1,99 @@
-.class public final Lcom/google/ads/y;
+.class public Lcom/google/ads/y;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
-
-# static fields
-.field public static final a:Landroid/net/Uri;
-
-.field public static final b:Landroid/net/Uri;
-
-.field public static final c:[Ljava/lang/String;
-
-.field public static final d:[Ljava/lang/String;
+# interfaces
+.implements Lcom/google/ads/n;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 4
-
-    .prologue
-    const/4 v3, 0x1
-
-    const/4 v2, 0x0
-
-    .line 85
-    const-string v0, "content://com.google.plus.platform/ads"
-
-    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
-
-    move-result-object v0
-
-    sput-object v0, Lcom/google/ads/y;->a:Landroid/net/Uri;
-
-    .line 91
-    const-string v0, "content://com.google.plus.platform/token"
-
-    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
-
-    move-result-object v0
-
-    sput-object v0, Lcom/google/ads/y;->b:Landroid/net/Uri;
-
-    .line 118
-    const/4 v0, 0x2
-
-    new-array v0, v0, [Ljava/lang/String;
-
-    const-string v1, "_id"
-
-    aput-object v1, v0, v2
-
-    const-string v1, "has_plus1"
-
-    aput-object v1, v0, v3
-
-    sput-object v0, Lcom/google/ads/y;->c:[Ljava/lang/String;
-
-    .line 124
-    new-array v0, v3, [Ljava/lang/String;
-
-    const-string v1, "drt"
-
-    aput-object v1, v0, v2
-
-    sput-object v0, Lcom/google/ads/y;->d:[Ljava/lang/String;
-
-    return-void
-.end method
-
 .method public constructor <init>()V
     .locals 0
 
     .prologue
-    .line 11
+    .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    return-void
+.end method
+
+
+# virtual methods
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 4
+    .parameter
+    .parameter
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/internal/d;",
+            "Ljava/util/HashMap",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Landroid/webkit/WebView;",
+            ")V"
+        }
+    .end annotation
+
+    .prologue
+    .line 27
+    const-string v0, "string"
+
+    invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/String;
+
+    .line 28
+    const-string v1, "afma_notify_dt"
+
+    invoke-virtual {p2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/lang/String;
+
+    .line 30
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Received log message: <\"string\": \""
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v2, "\", \"afmaNotifyDt\": \""
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "\">"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->c(Ljava/lang/String;)V
+
+    .line 32
     return-void
 .end method

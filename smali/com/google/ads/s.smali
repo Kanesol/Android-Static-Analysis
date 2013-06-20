@@ -1,9 +1,9 @@
-.class public final Lcom/google/ads/s;
+.class public Lcom/google/ads/s;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 # interfaces
-.implements Lcom/google/ads/j;
+.implements Lcom/google/ads/n;
 
 
 # direct methods
@@ -11,7 +11,7 @@
     .locals 0
 
     .prologue
-    .line 18
+    .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -19,15 +19,15 @@
 
 
 # virtual methods
-.method public final a(Lcom/google/ads/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
-    .locals 4
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 2
     .parameter
     .parameter
     .parameter
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/google/ads/d;",
+            "Lcom/google/ads/internal/d;",
             "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
@@ -40,60 +40,37 @@
 
     .prologue
     .line 27
-    const-string v0, "string"
+    instance-of v0, p3, Lcom/google/ads/internal/AdWebView;
 
-    invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/String;
+    if-eqz v0, :cond_0
 
     .line 28
-    const-string v1, "afma_notify_dt"
+    check-cast p3, Lcom/google/ads/internal/AdWebView;
+
+    .line 29
+    const-string v0, "1"
+
+    const-string v1, "custom_close"
 
     invoke-virtual {p2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
-    check-cast v1, Ljava/lang/String;
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 30
-    new-instance v2, Ljava/lang/StringBuilder;
+    move-result v0
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-virtual {p3, v0}, Lcom/google/ads/internal/AdWebView;->setCustomClose(Z)V
 
-    const-string v3, "Received log message: <\"string\": \""
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v2, "\", \"afmaNotifyDt\": \""
-
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, "\">"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/google/ads/util/a;->c(Ljava/lang/String;)V
-
-    .line 32
+    .line 33
+    :goto_0
     return-void
+
+    .line 31
+    :cond_0
+    const-string v0, "Trying to set a custom close icon on a WebView that isn\'t an AdWebView"
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
+
+    goto :goto_0
 .end method

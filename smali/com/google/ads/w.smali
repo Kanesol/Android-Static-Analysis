@@ -1,134 +1,167 @@
-.class public final Lcom/google/ads/w;
+.class public Lcom/google/ads/w;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 # interfaces
-.implements Ljava/lang/Runnable;
-
-
-# instance fields
-.field private a:Landroid/content/Context;
-
-.field private b:Ljava/lang/String;
+.implements Lcom/google/ads/n;
 
 
 # direct methods
-.method public constructor <init>(Ljava/lang/String;Landroid/content/Context;)V
+.method public constructor <init>()V
     .locals 0
-    .parameter
-    .parameter
 
     .prologue
-    .line 32
+    .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 33
-    iput-object p1, p0, Lcom/google/ads/w;->b:Ljava/lang/String;
-
-    .line 34
-    iput-object p2, p0, Lcom/google/ads/w;->a:Landroid/content/Context;
-
-    .line 35
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
-    .locals 4
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 8
+    .parameter
+    .parameter
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/internal/d;",
+            "Ljava/util/HashMap",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Landroid/webkit/WebView;",
+            ")V"
+        }
+    .end annotation
 
     .prologue
-    .line 46
-    :try_start_0
-    new-instance v0, Ljava/lang/StringBuilder;
+    .line 28
+    const-string v0, "url"
 
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "Pinging URL: "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/google/ads/w;->b:Ljava/lang/String;
+    check-cast v0, Ljava/lang/String;
 
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 29
+    const-string v1, "type"
 
-    move-result-object v0
+    invoke-virtual {p2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
 
-    move-result-object v0
+    check-cast v1, Ljava/lang/String;
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->a(Ljava/lang/String;)V
+    .line 30
+    const-string v2, "afma_notify_dt"
 
-    .line 48
-    new-instance v0, Ljava/net/URL;
-
-    iget-object v1, p0, Lcom/google/ads/w;->b:Ljava/lang/String;
-
-    invoke-direct {v0, v1}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
-
-    .line 51
-    invoke-virtual {v0}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/net/HttpURLConnection;
-    :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 53
-    :try_start_1
-    iget-object v1, p0, Lcom/google/ads/w;->a:Landroid/content/Context;
-
-    invoke-static {v0, v1}, Lcom/google/ads/util/AdUtil;->a(Ljava/net/HttpURLConnection;Landroid/content/Context;)V
-
-    .line 54
-    const/4 v1, 0x1
-
-    invoke-virtual {v0, v1}, Ljava/net/HttpURLConnection;->setInstanceFollowRedirects(Z)V
-
-    .line 55
-    invoke-virtual {v0}, Ljava/net/HttpURLConnection;->connect()V
-
-    .line 58
-    invoke-virtual {v0}, Ljava/net/HttpURLConnection;->getResponseCode()I
-
-    move-result v1
-
-    .line 59
-    const/16 v2, 0xc8
-
-    if-lt v1, v2, :cond_0
-
-    const/16 v2, 0x12c
-
-    if-lt v1, v2, :cond_1
-
-    .line 60
-    :cond_0
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "Did not receive 2XX (got "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p2, v2}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    check-cast v2, Ljava/lang/String;
+
+    .line 31
+    const-string v3, "1"
+
+    const-string v4, "drt_include"
+
+    invoke-virtual {p2, v4}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    .line 32
+    const-string v3, "request_scenario"
+
+    invoke-virtual {p2, v3}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/lang/String;
+
+    .line 33
+    const-string v5, "1"
+
+    const-string v6, "use_webview_loadurl"
+
+    invoke-virtual {p2, v6}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v6
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    .line 38
+    sget-object v6, Lcom/google/ads/internal/c$d;->d:Lcom/google/ads/internal/c$d;
+
+    iget-object v6, v6, Lcom/google/ads/internal/c$d;->e:Ljava/lang/String;
+
+    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_1
+
+    .line 40
+    sget-object v3, Lcom/google/ads/internal/c$d;->d:Lcom/google/ads/internal/c$d;
+
+    .line 50
+    :goto_0
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "Received ad url: <url: \""
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    const-string v7, "\" type: \""
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
 
-    const-string v2, ") from pinging URL: "
+    const-string v6, "\" afmaNotifyDt: \""
+
+    invoke-virtual {v1, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
 
-    iget-object v2, p0, Lcom/google/ads/w;->b:Ljava/lang/String;
+    const-string v2, "\" useWebViewLoadUrl: \""
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, "\">"
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -138,55 +171,69 @@
 
     move-result-object v1
 
-    invoke-static {v1}, Lcom/google/ads/util/a;->e(Ljava/lang/String;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    invoke-static {v1}, Lcom/google/ads/util/b;->c(Ljava/lang/String;)V
 
-    .line 64
-    :cond_1
-    :try_start_2
-    invoke-virtual {v0}, Ljava/net/HttpURLConnection;->disconnect()V
+    .line 58
+    invoke-virtual {p1}, Lcom/google/ads/internal/d;->j()Lcom/google/ads/internal/c;
 
-    .line 69
-    :goto_0
-    return-void
+    move-result-object v1
 
-    .line 64
-    :catchall_0
-    move-exception v1
+    .line 59
+    if-eqz v1, :cond_0
 
-    invoke-virtual {v0}, Ljava/net/HttpURLConnection;->disconnect()V
+    .line 60
+    invoke-virtual {v1, v4}, Lcom/google/ads/internal/c;->c(Z)V
 
-    throw v1
-    :try_end_2
-    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_0
+    .line 61
+    invoke-virtual {v1, v3}, Lcom/google/ads/internal/c;->a(Lcom/google/ads/internal/c$d;)V
 
-    .line 68
-    :catch_0
-    move-exception v0
+    .line 62
+    invoke-virtual {v1, v5}, Lcom/google/ads/internal/c;->d(Z)V
+
+    .line 65
+    invoke-virtual {v1, v0}, Lcom/google/ads/internal/c;->d(Ljava/lang/String;)V
 
     .line 67
-    new-instance v1, Ljava/lang/StringBuilder;
+    :cond_0
+    return-void
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    .line 41
+    :cond_1
+    sget-object v6, Lcom/google/ads/internal/c$d;->c:Lcom/google/ads/internal/c$d;
 
-    const-string v2, "Unable to ping the URL: "
+    iget-object v6, v6, Lcom/google/ads/internal/c$d;->e:Ljava/lang/String;
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result-object v1
+    move-result v6
 
-    iget-object v2, p0, Lcom/google/ads/w;->b:Ljava/lang/String;
+    if-eqz v6, :cond_2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 43
+    sget-object v3, Lcom/google/ads/internal/c$d;->c:Lcom/google/ads/internal/c$d;
 
-    move-result-object v1
+    goto :goto_0
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 44
+    :cond_2
+    sget-object v6, Lcom/google/ads/internal/c$d;->a:Lcom/google/ads/internal/c$d;
 
-    move-result-object v1
+    iget-object v6, v6, Lcom/google/ads/internal/c$d;->e:Ljava/lang/String;
 
-    invoke-static {v1, v0}, Lcom/google/ads/util/a;->b(Ljava/lang/String;Ljava/lang/Throwable;)V
+    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_3
+
+    .line 46
+    sget-object v3, Lcom/google/ads/internal/c$d;->a:Lcom/google/ads/internal/c$d;
+
+    goto :goto_0
+
+    .line 48
+    :cond_3
+    sget-object v3, Lcom/google/ads/internal/c$d;->b:Lcom/google/ads/internal/c$d;
 
     goto :goto_0
 .end method

@@ -16,17 +16,7 @@
 
 .field private b:I
 
-.field private c:Landroid/util/Pair;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Landroid/util/Pair",
-            "<",
-            "Ljava/lang/Integer;",
-            "Ljava/lang/Integer;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private c:I
 
 .field private d:I
 
@@ -34,15 +24,19 @@
 
 .field private f:I
 
-.field private g:Ljava/lang/String;
+.field private g:I
 
-.field private h:I
+.field private h:Ljava/lang/String;
 
 .field private i:I
 
-.field private j:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+.field private j:I
 
-.field private k:I
+.field private k:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+
+.field private l:I
+
+.field private m:Ljava/lang/String;
 
 
 # direct methods
@@ -50,38 +44,40 @@
     .locals 0
 
     .prologue
-    .line 16
+    .line 17
     invoke-direct {p0}, Lcom/google/ads/AdRequest;-><init>()V
 
-    .line 21
+    .line 22
     return-void
 .end method
 
-.method private static a(I)Ljava/lang/String;
-    .locals 4
+.method private a(I)Ljava/lang/String;
+    .locals 5
     .parameter
 
     .prologue
-    .line 260
-    const-string v0, "#%06x"
+    .line 284
+    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
-    const/4 v1, 0x1
+    const-string v1, "#%06x"
 
-    new-array v1, v1, [Ljava/lang/Object;
+    const/4 v2, 0x1
 
-    const/4 v2, 0x0
+    new-array v2, v2, [Ljava/lang/Object;
 
-    const v3, 0xffffff
+    const/4 v3, 0x0
 
-    and-int/2addr v3, p0
+    const v4, 0xffffff
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    and-int/2addr v4, p1
 
-    move-result-object v3
+    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    aput-object v3, v1, v2
+    move-result-object v4
 
-    invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    aput-object v4, v2, v3
+
+    invoke-static {v0, v1, v2}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -91,7 +87,7 @@
 
 # virtual methods
 .method public getRequestMap(Landroid/content/Context;)Ljava/util/Map;
-    .locals 2
+    .locals 5
     .parameter "context"
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -107,234 +103,305 @@
     .end annotation
 
     .prologue
-    .line 207
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->a:Ljava/lang/String;
+    const/16 v4, 0xff
 
-    if-eqz v0, :cond_0
+    .line 220
+    const-class v0, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;
 
-    .line 208
-    const-string v0, "q"
+    invoke-virtual {p0, v0}, Lcom/google/ads/searchads/SearchAdRequest;->getNetworkExtras(Ljava/lang/Class;)Ljava/lang/Object;
 
+    move-result-object v0
+
+    check-cast v0, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;
+
+    .line 222
+    if-nez v0, :cond_0
+
+    .line 223
+    new-instance v0, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;
+
+    invoke-direct {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;-><init>()V
+
+    .line 224
+    invoke-virtual {p0, v0}, Lcom/google/ads/searchads/SearchAdRequest;->setNetworkExtras(Lcom/google/ads/mediation/NetworkExtras;)Lcom/google/ads/AdRequest;
+
+    .line 227
+    :cond_0
     iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->a:Ljava/lang/String;
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    if-eqz v1, :cond_1
 
-    .line 211
-    :cond_0
-    iget v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
-
-    invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    .line 212
-    const-string v0, "bgcolor"
-
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
-
-    invoke-static {v1}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+    .line 228
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
     move-result-object v1
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    const-string v2, "q"
 
-    .line 215
+    iget-object v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->a:Ljava/lang/String;
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 231
     :cond_1
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
 
-    if-eqz v0, :cond_2
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
 
-    .line 216
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
+    move-result v1
 
-    iget-object v0, v0, Landroid/util/Pair;->first:Ljava/lang/Object;
+    if-eqz v1, :cond_2
 
-    if-eqz v0, :cond_2
+    .line 232
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
+    move-result-object v1
 
-    iget-object v0, v0, Landroid/util/Pair;->second:Ljava/lang/Object;
+    const-string v2, "bgcolor"
 
-    if-eqz v0, :cond_2
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
 
-    .line 217
-    const-string v1, "gradientfrom"
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
 
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
+    move-result-object v3
 
-    iget-object v0, v0, Landroid/util/Pair;->first:Ljava/lang/Object;
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    check-cast v0, Ljava/lang/Integer;
-
-    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
-
-    move-result v0
-
-    invoke-static {v0}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-virtual {p0, v1, v0}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
-
-    .line 218
-    const-string v1, "gradientto"
-
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
-
-    iget-object v0, v0, Landroid/util/Pair;->second:Ljava/lang/Object;
-
-    check-cast v0, Ljava/lang/Integer;
-
-    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
-
-    move-result v0
-
-    invoke-static {v0}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-virtual {p0, v1, v0}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
-
-    .line 222
+    .line 235
     :cond_2
-    iget v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:I
 
-    invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
 
-    move-result v0
+    move-result v1
 
-    if-eqz v0, :cond_3
-
-    .line 223
-    const-string v0, "hcolor"
+    if-ne v1, v4, :cond_3
 
     iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
 
-    invoke-static {v1}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
+
+    move-result v1
+
+    if-ne v1, v4, :cond_3
+
+    .line 237
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
     move-result-object v1
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    const-string v2, "gradientfrom"
 
-    .line 226
-    :cond_3
-    iget v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:I
 
-    invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
 
-    move-result v0
+    move-result-object v3
 
-    if-eqz v0, :cond_4
-
-    .line 227
-    const-string v0, "dcolor"
-
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
-
-    invoke-static {v1}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
-
-    .line 230
-    :cond_4
-    iget v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
-
-    invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
-
-    move-result v0
-
-    if-eqz v0, :cond_5
-
-    .line 231
-    const-string v0, "acolor"
-
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
-
-    invoke-static {v1}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
-
-    .line 234
-    :cond_5
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:Ljava/lang/String;
-
-    if-eqz v0, :cond_6
-
-    .line 235
-    const-string v0, "font"
-
-    iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:Ljava/lang/String;
-
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 238
-    :cond_6
-    const-string v0, "headersize"
-
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->h:I
-
-    invoke-static {v1}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
     move-result-object v1
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    const-string v2, "gradientto"
 
-    .line 240
-    iget v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->i:I
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
 
-    invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
 
-    move-result v0
+    move-result-object v3
 
-    if-eqz v0, :cond_7
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 241
-    const-string v0, "bcolor"
+    :cond_3
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
 
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->i:I
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
 
-    invoke-static {v1}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+    move-result v1
+
+    if-eqz v1, :cond_4
+
+    .line 242
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
     move-result-object v1
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    const-string v2, "hcolor"
 
-    .line 244
-    :cond_7
-    iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
 
-    if-eqz v0, :cond_8
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 245
-    const-string v0, "btype"
+    :cond_4
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
 
-    iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
 
-    invoke-virtual {v1}, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->toString()Ljava/lang/String;
+    move-result v1
 
-    move-result-object v1
+    if-eqz v1, :cond_5
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
-
-    .line 248
-    :cond_8
-    const-string v0, "bthick"
-
-    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->k:I
-
-    invoke-static {v1}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+    .line 246
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
 
     move-result-object v1
 
-    invoke-virtual {p0, v0, v1}, Lcom/google/ads/searchads/SearchAdRequest;->addExtra(Ljava/lang/String;Ljava/lang/Object;)V
+    const-string v2, "dcolor"
+
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
+
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 250
+    :cond_5
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:I
+
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
+
+    move-result v1
+
+    if-eqz v1, :cond_6
+
+    .line 251
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "acolor"
+
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:I
+
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 254
+    :cond_6
+    iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->h:Ljava/lang/String;
+
+    if-eqz v1, :cond_7
+
+    .line 255
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "font"
+
+    iget-object v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->h:Ljava/lang/String;
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 258
+    :cond_7
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "headersize"
+
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->i:I
+
+    invoke-static {v3}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 260
+    iget v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:I
+
+    invoke-static {v1}, Landroid/graphics/Color;->alpha(I)I
+
+    move-result v1
+
+    if-eqz v1, :cond_8
+
+    .line 261
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "bcolor"
+
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:I
+
+    invoke-direct {p0, v3}, Lcom/google/ads/searchads/SearchAdRequest;->a(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 264
+    :cond_8
+    iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->k:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+
+    if-eqz v1, :cond_9
+
+    .line 265
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "btype"
+
+    iget-object v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->k:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+
+    invoke-virtual {v3}, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 268
+    :cond_9
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v1
+
+    const-string v2, "bthick"
+
+    iget v3, p0, Lcom/google/ads/searchads/SearchAdRequest;->l:I
+
+    invoke-static {v3}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-interface {v1, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 270
+    iget-object v1, p0, Lcom/google/ads/searchads/SearchAdRequest;->m:Ljava/lang/String;
+
+    if-eqz v1, :cond_a
+
+    .line 271
+    invoke-virtual {v0}, Lcom/google/ads/mediation/admob/AdMobAdapterExtras;->getExtras()Ljava/util/Map;
+
+    move-result-object v0
+
+    const-string v1, "channel"
+
+    iget-object v2, p0, Lcom/google/ads/searchads/SearchAdRequest;->m:Ljava/lang/String;
+
+    invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 274
+    :cond_a
     invoke-super {p0, p1}, Lcom/google/ads/AdRequest;->getRequestMap(Landroid/content/Context;)Ljava/util/Map;
 
     move-result-object v0
@@ -347,19 +414,21 @@
     .parameter "anchorTextColor"
 
     .prologue
-    .line 154
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
+    .line 159
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:I
 
-    .line 155
+    .line 160
     return-void
 .end method
 
 .method public setBackgroundColor(I)V
-    .locals 2
+    .locals 3
     .parameter "backgroundColor"
 
     .prologue
-    .line 98
+    const/4 v2, 0x0
+
+    .line 101
     invoke-static {p1}, Landroid/graphics/Color;->alpha(I)I
 
     move-result v0
@@ -368,15 +437,16 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 99
+    .line 102
     iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
 
-    .line 100
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
+    .line 103
+    iput v2, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:I
 
     .line 104
+    iput v2, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
+
+    .line 108
     :cond_0
     return-void
 .end method
@@ -391,7 +461,7 @@
 
     const/4 v1, 0x0
 
-    .line 116
+    .line 120
     invoke-static {p1}, Landroid/graphics/Color;->alpha(I)I
 
     move-result v0
@@ -404,29 +474,20 @@
 
     if-ne v0, v2, :cond_0
 
-    .line 117
+    .line 121
     invoke-static {v1, v1, v1, v1}, Landroid/graphics/Color;->argb(IIII)I
 
     move-result v0
 
     iput v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->b:I
 
-    .line 118
-    new-instance v0, Ljava/lang/Integer;
-
-    invoke-direct {v0, p1}, Ljava/lang/Integer;-><init>(I)V
-
-    new-instance v1, Ljava/lang/Integer;
-
-    invoke-direct {v1, p2}, Ljava/lang/Integer;-><init>(I)V
-
-    invoke-static {v0, v1}, Landroid/util/Pair;->create(Ljava/lang/Object;Ljava/lang/Object;)Landroid/util/Pair;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:Landroid/util/Pair;
-
     .line 122
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->c:I
+
+    .line 123
+    iput p2, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
+
+    .line 127
     :cond_0
     return-void
 .end method
@@ -436,10 +497,10 @@
     .parameter "borderColor"
 
     .prologue
-    .line 184
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->i:I
+    .line 189
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:I
 
-    .line 185
+    .line 190
     return-void
 .end method
 
@@ -448,10 +509,10 @@
     .parameter "borderThickness"
 
     .prologue
-    .line 202
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->k:I
+    .line 207
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->l:I
 
-    .line 203
+    .line 208
     return-void
 .end method
 
@@ -460,10 +521,22 @@
     .parameter "borderType"
 
     .prologue
-    .line 192
-    iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->j:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
+    .line 197
+    iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->k:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
-    .line 193
+    .line 198
+    return-void
+.end method
+
+.method public setCustomChannels(Ljava/lang/String;)V
+    .locals 0
+    .parameter "channelIds"
+
+    .prologue
+    .line 215
+    iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->m:Ljava/lang/String;
+
+    .line 216
     return-void
 .end method
 
@@ -472,10 +545,10 @@
     .parameter "descriptionTextColor"
 
     .prologue
-    .line 143
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
+    .line 148
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->f:I
 
-    .line 144
+    .line 149
     return-void
 .end method
 
@@ -484,10 +557,10 @@
     .parameter "fontFace"
 
     .prologue
-    .line 163
-    iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->g:Ljava/lang/String;
+    .line 168
+    iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->h:Ljava/lang/String;
 
-    .line 164
+    .line 169
     return-void
 .end method
 
@@ -496,10 +569,10 @@
     .parameter "headerTextColor"
 
     .prologue
-    .line 132
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->d:I
+    .line 137
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->e:I
 
-    .line 133
+    .line 138
     return-void
 .end method
 
@@ -508,10 +581,10 @@
     .parameter "headerTextSize"
 
     .prologue
-    .line 173
-    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->h:I
+    .line 178
+    iput p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->i:I
 
-    .line 174
+    .line 179
     return-void
 .end method
 
@@ -520,9 +593,9 @@
     .parameter "query"
 
     .prologue
-    .line 88
+    .line 91
     iput-object p1, p0, Lcom/google/ads/searchads/SearchAdRequest;->a:Ljava/lang/String;
 
-    .line 89
+    .line 92
     return-void
 .end method

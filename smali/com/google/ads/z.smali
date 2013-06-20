@@ -1,105 +1,146 @@
-.class public final Lcom/google/ads/z;
+.class public Lcom/google/ads/z;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
+# interfaces
+.implements Lcom/google/ads/n;
 
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/google/ads/z$c;,
-        Lcom/google/ads/z$b;,
-        Lcom/google/ads/z$a;
-    }
-.end annotation
+
+# instance fields
+.field private a:Lcom/google/ads/AdActivity$StaticMethodWrapper;
 
 
 # direct methods
-.method private constructor <init>()V
-    .locals 0
+.method public constructor <init>()V
+    .locals 1
 
     .prologue
-    .line 156
+    .line 24
+    new-instance v0, Lcom/google/ads/AdActivity$StaticMethodWrapper;
+
+    invoke-direct {v0}, Lcom/google/ads/AdActivity$StaticMethodWrapper;-><init>()V
+
+    invoke-direct {p0, v0}, Lcom/google/ads/z;-><init>(Lcom/google/ads/AdActivity$StaticMethodWrapper;)V
+
+    .line 25
+    return-void
+.end method
+
+.method public constructor <init>(Lcom/google/ads/AdActivity$StaticMethodWrapper;)V
+    .locals 0
+    .parameter
+
+    .prologue
+    .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 158
+    .line 31
+    iput-object p1, p0, Lcom/google/ads/z;->a:Lcom/google/ads/AdActivity$StaticMethodWrapper;
+
+    .line 32
     return-void
 .end method
 
-.method public static a(Landroid/app/Activity;)V
-    .locals 2
+
+# virtual methods
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 3
     .parameter
+    .parameter
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/internal/d;",
+            "Ljava/util/HashMap",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Landroid/webkit/WebView;",
+            ")V"
+        }
+    .end annotation
 
     .prologue
-    .line 247
-    new-instance v0, Ljava/lang/Thread;
+    .line 48
+    const-string v0, "a"
 
-    new-instance v1, Lcom/google/ads/z$a;
+    invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    invoke-direct {v1, p0}, Lcom/google/ads/z$a;-><init>(Landroid/app/Activity;)V
+    move-result-object v0
 
-    invoke-direct {v0, v1}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
+    check-cast v0, Ljava/lang/String;
 
-    invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+    .line 49
+    if-nez v0, :cond_0
 
-    .line 248
+    .line 50
+    const-string v0, "Could not get the action parameter for open GMSG."
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->a(Ljava/lang/String;)V
+
+    .line 67
+    :goto_0
     return-void
-.end method
 
-.method public static a(Landroid/app/Activity;Landroid/webkit/WebView;Ljava/lang/String;)V
-    .locals 2
-    .parameter
-    .parameter
-    .parameter
+    .line 55
+    :cond_0
+    const-string v1, "webapp"
 
-    .prologue
-    .line 217
-    new-instance v0, Ljava/lang/Thread;
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    new-instance v1, Lcom/google/ads/z$b;
+    move-result v1
 
-    invoke-direct {v1, p0, p1, p2}, Lcom/google/ads/z$b;-><init>(Landroid/app/Activity;Landroid/webkit/WebView;Ljava/lang/String;)V
+    if-eqz v1, :cond_1
 
-    invoke-direct {v0, v1}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
+    .line 57
+    iget-object v0, p0, Lcom/google/ads/z;->a:Lcom/google/ads/AdActivity$StaticMethodWrapper;
 
-    invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+    new-instance v1, Lcom/google/ads/internal/e;
 
-    .line 218
-    return-void
-.end method
+    const-string v2, "webapp"
 
-.method public static a(Landroid/webkit/WebView;Z)V
-    .locals 2
-    .parameter
-    .parameter
+    invoke-direct {v1, v2, p2}, Lcom/google/ads/internal/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
 
-    .prologue
-    .line 178
-    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-virtual {v0, p1, v1}, Lcom/google/ads/AdActivity$StaticMethodWrapper;->launchAdActivity(Lcom/google/ads/internal/d;Lcom/google/ads/internal/e;)V
 
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    goto :goto_0
 
-    const-string v1, "(G_updatePlusOne("
+    .line 59
+    :cond_1
+    const-string v1, "expand"
 
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result-object v0
+    move-result v0
 
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    if-eqz v0, :cond_2
 
-    move-result-object v0
+    .line 60
+    iget-object v0, p0, Lcom/google/ads/z;->a:Lcom/google/ads/AdActivity$StaticMethodWrapper;
 
-    const-string v1, "))"
+    new-instance v1, Lcom/google/ads/internal/e;
 
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v2, "expand"
 
-    move-result-object v0
+    invoke-direct {v1, v2, p2}, Lcom/google/ads/internal/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
 
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v0, p1, v1}, Lcom/google/ads/AdActivity$StaticMethodWrapper;->launchAdActivity(Lcom/google/ads/internal/d;Lcom/google/ads/internal/e;)V
 
-    move-result-object v0
+    goto :goto_0
 
-    invoke-static {p0, v0}, Lcom/google/ads/a;->a(Landroid/webkit/WebView;Ljava/lang/String;)V
+    .line 64
+    :cond_2
+    iget-object v0, p0, Lcom/google/ads/z;->a:Lcom/google/ads/AdActivity$StaticMethodWrapper;
 
-    .line 180
-    return-void
+    new-instance v1, Lcom/google/ads/internal/e;
+
+    const-string v2, "intent"
+
+    invoke-direct {v1, v2, p2}, Lcom/google/ads/internal/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
+
+    invoke-virtual {v0, p1, v1}, Lcom/google/ads/AdActivity$StaticMethodWrapper;->launchAdActivity(Lcom/google/ads/internal/d;Lcom/google/ads/internal/e;)V
+
+    goto :goto_0
 .end method

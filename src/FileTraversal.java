@@ -1,3 +1,15 @@
+/****************************
+ * 
+ * This class traverses the folders and 
+ * subfolders and returns all the files 
+ * that are stored within.
+ * 
+ * It does not return folders
+ * 
+ * @version 1.0
+ * @authoer Solomon Redfern
+ */
+
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.Files;

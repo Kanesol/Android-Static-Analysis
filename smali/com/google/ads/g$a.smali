@@ -1,9 +1,6 @@
-.class final Lcom/google/ads/g$a;
-.super Ljava/lang/Object;
+.class public final enum Lcom/google/ads/g$a;
+.super Ljava/lang/Enum;
 .source "SourceFile"
-
-# interfaces
-.implements Ljava/lang/Runnable;
 
 
 # annotations
@@ -12,105 +9,189 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x4019
     name = "a"
 .end annotation
 
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ljava/lang/Enum",
+        "<",
+        "Lcom/google/ads/g$a;",
+        ">;"
+    }
+.end annotation
 
-# instance fields
-.field private a:Ljava/lang/ref/WeakReference;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/lang/ref/WeakReference",
-            "<",
-            "Lcom/google/ads/g;",
-            ">;"
-        }
-    .end annotation
-.end field
 
-.field private b:Landroid/os/Handler;
+# static fields
+.field public static final enum a:Lcom/google/ads/g$a;
+
+.field public static final enum b:Lcom/google/ads/g$a;
+
+.field public static final enum c:Lcom/google/ads/g$a;
+
+.field public static final enum d:Lcom/google/ads/g$a;
+
+.field public static final enum e:Lcom/google/ads/g$a;
+
+.field public static final enum f:Lcom/google/ads/g$a;
+
+.field private static final synthetic g:[Lcom/google/ads/g$a;
 
 
 # direct methods
-.method public constructor <init>(Lcom/google/ads/g;)V
-    .locals 1
+.method static constructor <clinit>()V
+    .locals 8
+
+    .prologue
+    const/4 v7, 0x4
+
+    const/4 v6, 0x3
+
+    const/4 v5, 0x2
+
+    const/4 v4, 0x1
+
+    const/4 v3, 0x0
+
+    .line 19
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "AD"
+
+    invoke-direct {v0, v1, v3}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->a:Lcom/google/ads/g$a;
+
+    .line 22
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "NO_FILL"
+
+    invoke-direct {v0, v1, v4}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->b:Lcom/google/ads/g$a;
+
+    .line 25
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "ERROR"
+
+    invoke-direct {v0, v1, v5}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->c:Lcom/google/ads/g$a;
+
+    .line 28
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "TIMEOUT"
+
+    invoke-direct {v0, v1, v6}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->d:Lcom/google/ads/g$a;
+
+    .line 31
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "NOT_FOUND"
+
+    invoke-direct {v0, v1, v7}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->e:Lcom/google/ads/g$a;
+
+    .line 34
+    new-instance v0, Lcom/google/ads/g$a;
+
+    const-string v1, "EXCEPTION"
+
+    const/4 v2, 0x5
+
+    invoke-direct {v0, v1, v2}, Lcom/google/ads/g$a;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/ads/g$a;->f:Lcom/google/ads/g$a;
+
+    .line 17
+    const/4 v0, 0x6
+
+    new-array v0, v0, [Lcom/google/ads/g$a;
+
+    sget-object v1, Lcom/google/ads/g$a;->a:Lcom/google/ads/g$a;
+
+    aput-object v1, v0, v3
+
+    sget-object v1, Lcom/google/ads/g$a;->b:Lcom/google/ads/g$a;
+
+    aput-object v1, v0, v4
+
+    sget-object v1, Lcom/google/ads/g$a;->c:Lcom/google/ads/g$a;
+
+    aput-object v1, v0, v5
+
+    sget-object v1, Lcom/google/ads/g$a;->d:Lcom/google/ads/g$a;
+
+    aput-object v1, v0, v6
+
+    sget-object v1, Lcom/google/ads/g$a;->e:Lcom/google/ads/g$a;
+
+    aput-object v1, v0, v7
+
+    const/4 v1, 0x5
+
+    sget-object v2, Lcom/google/ads/g$a;->f:Lcom/google/ads/g$a;
+
+    aput-object v2, v0, v1
+
+    sput-object v0, Lcom/google/ads/g$a;->g:[Lcom/google/ads/g$a;
+
+    return-void
+.end method
+
+.method private constructor <init>(Ljava/lang/String;I)V
+    .locals 0
     .parameter
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()V"
+        }
+    .end annotation
 
     .prologue
-    .line 44
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    .line 17
+    invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 45
-    new-instance v0, Ljava/lang/ref/WeakReference;
-
-    invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
-
-    iput-object v0, p0, Lcom/google/ads/g$a;->a:Ljava/lang/ref/WeakReference;
-
-    .line 46
-    new-instance v0, Landroid/os/Handler;
-
-    invoke-direct {v0}, Landroid/os/Handler;-><init>()V
-
-    iput-object v0, p0, Lcom/google/ads/g$a;->b:Landroid/os/Handler;
-
-    .line 47
     return-void
 .end method
 
-
-# virtual methods
-.method public final a()V
-    .locals 3
-
-    .prologue
-    .line 61
-    iget-object v0, p0, Lcom/google/ads/g$a;->b:Landroid/os/Handler;
-
-    const-wide/16 v1, 0xfa
-
-    invoke-virtual {v0, p0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
-
-    .line 62
-    return-void
-.end method
-
-.method public final run()V
-    .locals 3
+.method public static valueOf(Ljava/lang/String;)Lcom/google/ads/g$a;
+    .locals 1
+    .parameter "name"
 
     .prologue
-    .line 51
-    iget-object v0, p0, Lcom/google/ads/g$a;->a:Ljava/lang/ref/WeakReference;
+    .line 17
+    const-class v0, Lcom/google/ads/g$a;
 
-    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
+    invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
 
     move-result-object v0
 
-    check-cast v0, Lcom/google/ads/g;
+    check-cast v0, Lcom/google/ads/g$a;
 
-    .line 52
-    if-nez v0, :cond_0
+    return-object v0
+.end method
 
-    .line 53
-    const-string v0, "The video must be gone, so cancelling the timeupdate task."
+.method public static values()[Lcom/google/ads/g$a;
+    .locals 1
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->d(Ljava/lang/String;)V
+    .prologue
+    .line 17
+    sget-object v0, Lcom/google/ads/g$a;->g:[Lcom/google/ads/g$a;
 
-    .line 58
-    :goto_0
-    return-void
+    invoke-virtual {v0}, [Lcom/google/ads/g$a;->clone()Ljava/lang/Object;
 
-    .line 56
-    :cond_0
-    invoke-virtual {v0}, Lcom/google/ads/g;->e()V
+    move-result-object v0
 
-    .line 57
-    iget-object v0, p0, Lcom/google/ads/g$a;->b:Landroid/os/Handler;
+    check-cast v0, [Lcom/google/ads/g$a;
 
-    const-wide/16 v1, 0xfa
-
-    invoke-virtual {v0, p0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
-
-    goto :goto_0
+    return-object v0
 .end method

@@ -1,9 +1,9 @@
-.class public final Lcom/google/ads/o;
+.class public Lcom/google/ads/o;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 # interfaces
-.implements Lcom/google/ads/j;
+.implements Lcom/google/ads/n;
 
 
 # direct methods
@@ -11,7 +11,7 @@
     .locals 0
 
     .prologue
-    .line 18
+    .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -19,15 +19,15 @@
 
 
 # virtual methods
-.method public final a(Lcom/google/ads/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
-    .locals 3
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 2
     .parameter
     .parameter
     .parameter
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/google/ads/d;",
+            "Lcom/google/ads/internal/d;",
             "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
@@ -39,8 +39,8 @@
     .end annotation
 
     .prologue
-    .line 27
-    const-string v0, "u"
+    .line 25
+    const-string v0, "name"
 
     invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -48,39 +48,29 @@
 
     check-cast v0, Ljava/lang/String;
 
-    .line 28
+    .line 26
     if-nez v0, :cond_0
 
-    .line 29
-    const-string v0, "Could not get URL from click gmsg."
+    .line 27
+    const-string v0, "Error: App event with no name parameter."
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->e(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
-    .line 38
+    .line 32
     :goto_0
     return-void
 
-    .line 34
+    .line 31
     :cond_0
-    new-instance v1, Lcom/google/ads/w;
+    const-string v1, "info"
 
-    invoke-virtual {p3}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
+    invoke-virtual {p2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v1
 
-    invoke-virtual {v2}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
+    check-cast v1, Ljava/lang/String;
 
-    move-result-object v2
-
-    invoke-direct {v1, v0, v2}, Lcom/google/ads/w;-><init>(Ljava/lang/String;Landroid/content/Context;)V
-
-    .line 36
-    new-instance v0, Ljava/lang/Thread;
-
-    invoke-direct {v0, v1}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
-
-    .line 37
-    invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+    invoke-virtual {p1, v0, v1}, Lcom/google/ads/internal/d;->a(Ljava/lang/String;Ljava/lang/String;)V
 
     goto :goto_0
 .end method

@@ -1,15 +1,15 @@
+/**************************************
+ * Used to hold an tokenised Smali line
+ * 
+ * @version 1.0
+ * @author Solomon Redfern
+ * 
+ **************************************/
+
 import java.util.ArrayList;
 
 public class CodeObject
 {
-	// invoke-direct 
-	//{v5, 
-	//v6, v7},
-	// Lorg/apache/http/message/BasicNameValuePair;
-	//-><init>
-	//(Ljava/lang/String;Ljava/lang/String;)
-	//V
-
 	private String type;
 	private String returnVar;
 	private ArrayList<String> passedVar;

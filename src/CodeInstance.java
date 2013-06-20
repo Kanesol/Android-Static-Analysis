@@ -1,3 +1,13 @@
+/************************************************
+ * 
+ * This class holds all the data that is held
+ * in a node along with the accessors and
+ * setters
+ * 
+ * @version 1.0
+ * @author Solomon Redfern
+ */
+
 import java.nio.file.Path;
 
 
@@ -10,6 +20,9 @@ public class CodeInstance implements Comparable<CodeInstance>
 	private Path file;
 	private int line;
 	
+	/*
+	 * Construtors
+	 */
 	public CodeInstance()
 	{
 		this.instanceName = null;

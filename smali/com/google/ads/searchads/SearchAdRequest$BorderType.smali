@@ -52,7 +52,7 @@
 
     const/4 v3, 0x0
 
-    .line 26
+    .line 27
     new-instance v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     const-string v1, "NONE"
@@ -63,7 +63,7 @@
 
     sput-object v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->NONE:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
-    .line 31
+    .line 32
     new-instance v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     const-string v1, "DASHED"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->DASHED:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
-    .line 36
+    .line 37
     new-instance v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     const-string v1, "DOTTED"
@@ -85,7 +85,7 @@
 
     sput-object v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->DOTTED:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
-    .line 41
+    .line 42
     new-instance v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     const-string v1, "SOLID"
@@ -96,7 +96,7 @@
 
     sput-object v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->SOLID:Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
-    .line 21
+    .line 22
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/google/ads/searchads/SearchAdRequest$BorderType;
@@ -136,13 +136,13 @@
     .end annotation
 
     .prologue
-    .line 45
+    .line 46
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 46
+    .line 47
     iput-object p3, p0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->a:Ljava/lang/String;
 
-    .line 47
+    .line 48
     return-void
 .end method
 
@@ -151,7 +151,7 @@
     .parameter "name"
 
     .prologue
-    .line 21
+    .line 22
     const-class v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -167,7 +167,7 @@
     .locals 1
 
     .prologue
-    .line 21
+    .line 22
     sget-object v0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->b:[Lcom/google/ads/searchads/SearchAdRequest$BorderType;
 
     invoke-virtual {v0}, [Lcom/google/ads/searchads/SearchAdRequest$BorderType;->clone()Ljava/lang/Object;
@@ -181,11 +181,11 @@
 
 
 # virtual methods
-.method public final toString()Ljava/lang/String;
+.method public toString()Ljava/lang/String;
     .locals 1
 
     .prologue
-    .line 51
+    .line 52
     iget-object v0, p0, Lcom/google/ads/searchads/SearchAdRequest$BorderType;->a:Ljava/lang/String;
 
     return-object v0

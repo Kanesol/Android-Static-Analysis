@@ -1,12 +1,34 @@
-.class public final Lcom/google/ads/t;
+.class public Lcom/google/ads/t;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 # interfaces
-.implements Lcom/google/ads/j;
+.implements Lcom/google/ads/n;
+
+
+# static fields
+.field private static final a:Lcom/google/ads/internal/a;
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .prologue
+    .line 24
+    sget-object v0, Lcom/google/ads/internal/a;->a:Lcom/google/ads/util/f;
+
+    invoke-interface {v0}, Lcom/google/ads/util/f;->b()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/ads/internal/a;
+
+    sput-object v0, Lcom/google/ads/t;->a:Lcom/google/ads/internal/a;
+
+    return-void
+.end method
+
 .method public constructor <init>()V
     .locals 0
 
@@ -19,15 +41,15 @@
 
 
 # virtual methods
-.method public final a(Lcom/google/ads/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
-    .locals 2
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 3
     .parameter
     .parameter
     .parameter
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/google/ads/d;",
+            "Lcom/google/ads/internal/d;",
             "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
@@ -39,8 +61,8 @@
     .end annotation
 
     .prologue
-    .line 35
-    const-string v0, "a"
+    .line 34
+    const-string v0, "js"
 
     invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -48,48 +70,71 @@
 
     check-cast v0, Ljava/lang/String;
 
-    .line 36
+    .line 35
     if-nez v0, :cond_0
 
-    .line 37
-    const-string v0, "Could not get the action parameter for open GMSG."
+    .line 36
+    const-string v0, "Could not get the JS to evaluate."
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->a(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
-    .line 51
+    .line 65
     :goto_0
     return-void
 
     .line 42
     :cond_0
-    const-string v1, "webapp"
+    instance-of v1, p3, Lcom/google/ads/internal/AdWebView;
 
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    if-eqz v1, :cond_1
 
-    move-result v0
+    .line 43
+    check-cast p3, Lcom/google/ads/internal/AdWebView;
 
-    if-eqz v0, :cond_1
+    .line 50
+    invoke-virtual {p3}, Lcom/google/ads/internal/AdWebView;->d()Lcom/google/ads/AdActivity;
 
-    .line 44
-    new-instance v0, Lcom/google/ads/e;
+    move-result-object v1
 
-    const-string v1, "webapp"
+    .line 51
+    if-nez v1, :cond_2
 
-    invoke-direct {v0, v1, p2}, Lcom/google/ads/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
+    .line 52
+    const-string v0, "Could not get the AdActivity from the AdWebView."
 
-    invoke-static {p1, v0}, Lcom/google/ads/AdActivity;->launchAdActivity(Lcom/google/ads/d;Lcom/google/ads/e;)V
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
     goto :goto_0
 
-    .line 48
+    .line 45
     :cond_1
-    new-instance v0, Lcom/google/ads/e;
+    const-string v0, "Trying to evaluate JS in a WebView that isn\'t an AdWebView"
 
-    const-string v1, "intent"
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
-    invoke-direct {v0, v1, p2}, Lcom/google/ads/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
+    goto :goto_0
 
-    invoke-static {p1, v0}, Lcom/google/ads/AdActivity;->launchAdActivity(Lcom/google/ads/d;Lcom/google/ads/e;)V
+    .line 57
+    :cond_2
+    invoke-virtual {v1}, Lcom/google/ads/AdActivity;->getOpeningAdWebView()Lcom/google/ads/internal/AdWebView;
+
+    move-result-object v1
+
+    .line 58
+    if-nez v1, :cond_3
+
+    .line 59
+    const-string v0, "Could not get the opening WebView."
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
+
+    goto :goto_0
+
+    .line 64
+    :cond_3
+    sget-object v2, Lcom/google/ads/t;->a:Lcom/google/ads/internal/a;
+
+    invoke-virtual {v2, v1, v0}, Lcom/google/ads/internal/a;->a(Landroid/webkit/WebView;Ljava/lang/String;)V
 
     goto :goto_0
 .end method

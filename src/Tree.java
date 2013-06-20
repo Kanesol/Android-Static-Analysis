@@ -1,3 +1,13 @@
+/**********************
+ * The tree structure used to hold 
+ * the nodes
+ * 
+ * This code was taken from the public
+ * domain and then modified for
+ * the smali project.
+ * 
+ *************************/
+
 import java.util.Comparator;
 
 
@@ -23,11 +33,6 @@ public class Tree<T> {
         }
         return result;
     }
-
-  /*  public interface NodeVisitor<T> {
-
-        boolean visit(Node<T> node);
-    }*/
 
     public Node<T> getRootElement(){
         return rootElement;

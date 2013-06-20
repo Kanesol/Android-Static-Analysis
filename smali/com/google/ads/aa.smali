@@ -1,6 +1,9 @@
-.class public final Lcom/google/ads/aa;
+.class public Lcom/google/ads/aa;
 .super Ljava/lang/Object;
 .source "SourceFile"
+
+# interfaces
+.implements Lcom/google/ads/n;
 
 
 # direct methods
@@ -8,73 +11,34 @@
     .locals 0
 
     .prologue
-    .line 18
+    .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
-.method public static a(Landroid/content/Context;)Z
-    .locals 4
+
+# virtual methods
+.method public a(Lcom/google/ads/internal/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
+    .locals 0
     .parameter
+    .parameter
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/internal/d;",
+            "Ljava/util/HashMap",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;",
+            "Landroid/webkit/WebView;",
+            ")V"
+        }
+    .end annotation
 
     .prologue
-    .line 24
-    new-instance v0, Landroid/content/Intent;
-
-    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
-
-    .line 25
-    new-instance v1, Landroid/content/ComponentName;
-
-    const-string v2, "com.google.android.apps.plus"
-
-    const-string v3, "com.google.android.apps.circles.platform.PlusOneActivity"
-
-    invoke-direct {v1, v2, v3}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-
-    .line 27
-    invoke-static {v0, p0}, Lcom/google/ads/aa;->a(Landroid/content/Intent;Landroid/content/Context;)Z
-
-    move-result v0
-
-    return v0
-.end method
-
-.method public static a(Landroid/content/Intent;Landroid/content/Context;)Z
-    .locals 2
-    .parameter
-    .parameter
-
-    .prologue
-    .line 37
-    invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object v0
-
-    .line 38
-    const/high16 v1, 0x1
-
-    invoke-virtual {v0, p0, v1}, Landroid/content/pm/PackageManager;->queryIntentActivities(Landroid/content/Intent;I)Ljava/util/List;
-
-    move-result-object v0
-
-    .line 40
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    move-result v0
-
-    if-lez v0, :cond_0
-
-    const/4 v0, 0x1
-
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
+    .line 30
+    return-void
 .end method

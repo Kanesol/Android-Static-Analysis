@@ -1,173 +1,370 @@
-.class public final Lcom/google/ads/k;
+.class Lcom/google/ads/k;
 .super Ljava/lang/Object;
 .source "SourceFile"
 
 # interfaces
-.implements Lcom/google/ads/j;
+.implements Lcom/google/ads/mediation/MediationInterstitialListener;
+
+
+# instance fields
+.field private final a:Lcom/google/ads/h;
 
 
 # direct methods
-.method public constructor <init>()V
+.method constructor <init>(Lcom/google/ads/h;)V
     .locals 0
+    .parameter
 
     .prologue
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 23
+    iput-object p1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    .line 24
     return-void
 .end method
 
 
 # virtual methods
-.method public final a(Lcom/google/ads/d;Ljava/util/HashMap;Landroid/webkit/WebView;)V
-    .locals 12
-    .parameter
-    .parameter
+.method public onDismissScreen(Lcom/google/ads/mediation/MediationInterstitialAdapter;)V
+    .locals 3
     .parameter
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/google/ads/d;",
-            "Ljava/util/HashMap",
-            "<",
-            "Ljava/lang/String;",
-            "Ljava/lang/String;",
-            ">;",
-            "Landroid/webkit/WebView;",
+            "Lcom/google/ads/mediation/MediationInterstitialAdapter",
+            "<**>;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 74
+    .local p1, adapter:Lcom/google/ads/mediation/MediationInterstitialAdapter;,"Lcom/google/ads/mediation/MediationInterstitialAdapter<**>;"
+    iget-object v1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    monitor-enter v1
+
+    .line 75
+    :try_start_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->j()Lcom/google/ads/e;
+
+    move-result-object v0
+
+    iget-object v2, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0, v2}, Lcom/google/ads/e;->b(Lcom/google/ads/h;)V
+
+    .line 76
+    monitor-exit v1
+
+    .line 77
+    return-void
+
+    .line 76
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
+.end method
+
+.method public onFailedToReceiveAd(Lcom/google/ads/mediation/MediationInterstitialAdapter;Lcom/google/ads/AdRequest$ErrorCode;)V
+    .locals 4
+    .parameter
+    .parameter "error"
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/mediation/MediationInterstitialAdapter",
+            "<**>;",
+            "Lcom/google/ads/AdRequest$ErrorCode;",
             ")V"
         }
     .end annotation
 
     .prologue
-    const/4 v11, 0x2
-
-    const/4 v1, 0x1
-
-    const/4 v2, 0x0
-
-    .line 31
-    const-string v0, "urls"
-
-    invoke-virtual {p2, v0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/String;
-
-    .line 32
-    if-nez v0, :cond_0
-
-    .line 33
-    const-string v0, "Could not get the urls param from canOpenURLs gmsg."
-
-    invoke-static {v0}, Lcom/google/ads/util/a;->e(Ljava/lang/String;)V
-
-    .line 59
-    :goto_0
-    return-void
-
-    .line 36
-    :cond_0
-    const-string v3, ","
-
-    invoke-virtual {v0, v3}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
-
-    move-result-object v4
-
-    .line 39
-    new-instance v5, Ljava/util/HashMap;
-
-    invoke-direct {v5}, Ljava/util/HashMap;-><init>()V
-
-    .line 40
-    invoke-virtual {p3}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object v6
-
-    .line 41
-    array-length v7, v4
-
-    move v3, v2
-
-    :goto_1
-    if-ge v3, v7, :cond_3
-
-    aget-object v8, v4, v3
-
-    .line 43
-    const-string v0, ";"
-
-    invoke-virtual {v8, v0, v11}, Ljava/lang/String;->split(Ljava/lang/String;I)[Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 44
-    aget-object v9, v0, v2
-
     .line 45
-    array-length v10, v0
+    .local p1, adapter:Lcom/google/ads/mediation/MediationInterstitialAdapter;,"Lcom/google/ads/mediation/MediationInterstitialAdapter<**>;"
+    iget-object v1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
 
-    if-lt v10, v11, :cond_1
+    monitor-enter v1
 
-    aget-object v0, v0, v1
+    .line 46
+    :try_start_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->i()Lcom/google/ads/mediation/MediationAdapter;
+
+    move-result-object v0
+
+    invoke-static {p1, v0}, Lcom/google/ads/util/a;->a(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 47
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Mediation adapter "
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v2, " failed to receive ad with error code: "
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->a(Ljava/lang/String;)V
 
     .line 49
-    :goto_2
-    invoke-static {v9}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
 
-    move-result-object v9
+    invoke-virtual {v0}, Lcom/google/ads/h;->c()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
 
     .line 50
-    new-instance v10, Landroid/content/Intent;
+    const-string v0, "Got an onFailedToReceiveAd() callback after loadAdTask is done from an interstitial adapter.  Ignoring callback."
 
-    invoke-direct {v10, v0, v9}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
-    .line 51
-    const/high16 v0, 0x1
+    .line 60
+    :goto_0
+    monitor-exit v1
 
-    invoke-virtual {v6, v10, v0}, Landroid/content/pm/PackageManager;->resolveActivity(Landroid/content/Intent;I)Landroid/content/pm/ResolveInfo;
+    .line 61
+    return-void
 
-    move-result-object v0
+    .line 55
+    :cond_0
+    iget-object v2, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
 
-    .line 53
-    if-eqz v0, :cond_2
+    const/4 v3, 0x0
 
-    move v0, v1
+    sget-object v0, Lcom/google/ads/AdRequest$ErrorCode;->NO_FILL:Lcom/google/ads/AdRequest$ErrorCode;
 
-    .line 54
-    :goto_3
-    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+    if-ne p2, v0, :cond_1
 
-    move-result-object v0
+    sget-object v0, Lcom/google/ads/g$a;->b:Lcom/google/ads/g$a;
 
-    invoke-virtual {v5, v8, v0}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 41
-    add-int/lit8 v0, v3, 0x1
-
-    move v3, v0
-
-    goto :goto_1
-
-    .line 45
-    :cond_1
-    const-string v0, "android.intent.action.VIEW"
-
-    goto :goto_2
-
-    :cond_2
-    move v0, v2
-
-    .line 53
-    goto :goto_3
-
-    .line 58
-    :cond_3
-    invoke-static {p3, v5}, Lcom/google/ads/a;->a(Landroid/webkit/WebView;Ljava/util/Map;)V
+    :goto_1
+    invoke-virtual {v2, v3, v0}, Lcom/google/ads/h;->a(ZLcom/google/ads/g$a;)V
 
     goto :goto_0
+
+    .line 60
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
+
+    .line 55
+    :cond_1
+    :try_start_1
+    sget-object v0, Lcom/google/ads/g$a;->c:Lcom/google/ads/g$a;
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    goto :goto_1
+.end method
+
+.method public onLeaveApplication(Lcom/google/ads/mediation/MediationInterstitialAdapter;)V
+    .locals 3
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/mediation/MediationInterstitialAdapter",
+            "<**>;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 81
+    .local p1, adapter:Lcom/google/ads/mediation/MediationInterstitialAdapter;,"Lcom/google/ads/mediation/MediationInterstitialAdapter<**>;"
+    iget-object v1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    monitor-enter v1
+
+    .line 82
+    :try_start_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->j()Lcom/google/ads/e;
+
+    move-result-object v0
+
+    iget-object v2, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0, v2}, Lcom/google/ads/e;->c(Lcom/google/ads/h;)V
+
+    .line 83
+    monitor-exit v1
+
+    .line 84
+    return-void
+
+    .line 83
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
+.end method
+
+.method public onPresentScreen(Lcom/google/ads/mediation/MediationInterstitialAdapter;)V
+    .locals 3
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/mediation/MediationInterstitialAdapter",
+            "<**>;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 66
+    .local p1, adapter:Lcom/google/ads/mediation/MediationInterstitialAdapter;,"Lcom/google/ads/mediation/MediationInterstitialAdapter<**>;"
+    iget-object v1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    monitor-enter v1
+
+    .line 67
+    :try_start_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->j()Lcom/google/ads/e;
+
+    move-result-object v0
+
+    iget-object v2, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0, v2}, Lcom/google/ads/e;->a(Lcom/google/ads/h;)V
+
+    .line 68
+    monitor-exit v1
+
+    .line 69
+    return-void
+
+    .line 68
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
+.end method
+
+.method public onReceivedAd(Lcom/google/ads/mediation/MediationInterstitialAdapter;)V
+    .locals 4
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/ads/mediation/MediationInterstitialAdapter",
+            "<**>;)V"
+        }
+    .end annotation
+
+    .prologue
+    .line 29
+    .local p1, adapter:Lcom/google/ads/mediation/MediationInterstitialAdapter;,"Lcom/google/ads/mediation/MediationInterstitialAdapter<**>;"
+    iget-object v1, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    monitor-enter v1
+
+    .line 30
+    :try_start_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->i()Lcom/google/ads/mediation/MediationAdapter;
+
+    move-result-object v0
+
+    invoke-static {p1, v0}, Lcom/google/ads/util/a;->a(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 31
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->c()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 32
+    const-string v0, "Got an onReceivedAd() callback after loadAdTask is done from an interstitial adapter. Ignoring callback."
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
+
+    .line 39
+    :goto_0
+    monitor-exit v1
+
+    .line 40
+    return-void
+
+    .line 37
+    :cond_0
+    iget-object v0, p0, Lcom/google/ads/k;->a:Lcom/google/ads/h;
+
+    const/4 v2, 0x1
+
+    sget-object v3, Lcom/google/ads/g$a;->a:Lcom/google/ads/g$a;
+
+    invoke-virtual {v0, v2, v3}, Lcom/google/ads/h;->a(ZLcom/google/ads/g$a;)V
+
+    goto :goto_0
+
+    .line 39
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
 .end method

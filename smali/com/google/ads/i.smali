@@ -1,35 +1,56 @@
-.class public final Lcom/google/ads/i;
-.super Landroid/webkit/WebViewClient;
+.class Lcom/google/ads/i;
+.super Ljava/lang/Object;
 .source "SourceFile"
+
+# interfaces
+.implements Ljava/lang/Runnable;
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/google/ads/i$a;
+    }
+.end annotation
 
 
 # instance fields
-.field private a:Lcom/google/ads/d;
+.field private final a:Lcom/google/ads/h;
 
-.field private b:Ljava/util/Map;
+.field private final b:Ljava/lang/String;
+
+.field private final c:Lcom/google/ads/AdRequest;
+
+.field private final d:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/Map",
+            "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
-            "Lcom/google/ads/j;",
+            "Ljava/lang/String;",
             ">;"
         }
     .end annotation
 .end field
 
-.field private c:Z
+.field private final e:Z
 
-.field private d:Z
-
-.field private e:Z
-
-.field private f:Z
+.field private final f:Ljava/lang/ref/WeakReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/WeakReference",
+            "<",
+            "Landroid/app/Activity;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # direct methods
-.method public constructor <init>(Lcom/google/ads/d;Ljava/util/Map;ZZ)V
+.method public constructor <init>(Lcom/google/ads/h;Landroid/app/Activity;Ljava/lang/String;Lcom/google/ads/AdRequest;Ljava/util/HashMap;)V
     .locals 1
+    .parameter
     .parameter
     .parameter
     .parameter
@@ -37,360 +58,423 @@
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/google/ads/d;",
-            "Ljava/util/Map",
+            "Lcom/google/ads/h;",
+            "Landroid/app/Activity;",
+            "Ljava/lang/String;",
+            "Lcom/google/ads/AdRequest;",
+            "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
-            "Lcom/google/ads/j;",
-            ">;ZZ)V"
+            "Ljava/lang/String;",
+            ">;)V"
         }
     .end annotation
 
     .prologue
-    const/4 v0, 0x0
+    .line 95
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 66
-    invoke-direct {p0}, Landroid/webkit/WebViewClient;-><init>()V
+    .line 96
+    iput-object p1, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
 
-    .line 67
-    iput-object p1, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
+    .line 97
+    iput-object p3, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
 
-    .line 68
-    iput-object p2, p0, Lcom/google/ads/i;->b:Ljava/util/Map;
+    .line 98
+    new-instance v0, Ljava/lang/ref/WeakReference;
 
-    .line 69
-    iput-boolean p3, p0, Lcom/google/ads/i;->c:Z
+    invoke-direct {v0, p2}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
-    .line 70
-    iput-boolean p4, p0, Lcom/google/ads/i;->d:Z
+    iput-object v0, p0, Lcom/google/ads/i;->f:Ljava/lang/ref/WeakReference;
 
-    .line 71
-    iput-boolean v0, p0, Lcom/google/ads/i;->e:Z
+    .line 99
+    iput-object p4, p0, Lcom/google/ads/i;->c:Lcom/google/ads/AdRequest;
 
-    .line 72
-    iput-boolean v0, p0, Lcom/google/ads/i;->f:Z
+    .line 102
+    new-instance v0, Ljava/util/HashMap;
 
-    .line 73
-    return-void
-.end method
+    invoke-direct {v0, p5}, Ljava/util/HashMap;-><init>(Ljava/util/Map;)V
 
+    iput-object v0, p0, Lcom/google/ads/i;->d:Ljava/util/HashMap;
 
-# virtual methods
-.method public final a()V
-    .locals 1
+    .line 103
+    iget-object v0, p0, Lcom/google/ads/i;->d:Ljava/util/HashMap;
 
-    .prologue
-    .line 177
-    const/4 v0, 0x0
+    invoke-static {v0}, Lcom/google/ads/i;->a(Ljava/util/Map;)Z
 
-    iput-boolean v0, p0, Lcom/google/ads/i;->d:Z
-
-    .line 178
-    return-void
-.end method
-
-.method public final b()V
-    .locals 1
-
-    .prologue
-    .line 188
-    const/4 v0, 0x1
+    move-result v0
 
     iput-boolean v0, p0, Lcom/google/ads/i;->e:Z
 
-    .line 189
+    .line 104
     return-void
 .end method
 
-.method public final c()V
-    .locals 1
-
-    .prologue
-    .line 199
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lcom/google/ads/i;->f:Z
-
-    .line 200
-    return-void
-.end method
-
-.method public final onPageFinished(Landroid/webkit/WebView;Ljava/lang/String;)V
-    .locals 2
-    .parameter "view"
+.method private a(Lcom/google/ads/mediation/MediationAdapter;)V
+    .locals 13
     .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<T::",
+            "Lcom/google/ads/mediation/NetworkExtras;",
+            "U:",
+            "Lcom/google/ads/mediation/MediationServerParameters;",
+            ">(",
+            "Lcom/google/ads/mediation/MediationAdapter",
+            "<TT;TU;>;)V"
+        }
+    .end annotation
+
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/ads/mediation/MediationServerParameters$MappingException;,
+            Lcom/google/ads/i$a;,
+            Ljava/lang/IllegalAccessException;,
+            Ljava/lang/InstantiationException;
+        }
+    .end annotation
 
     .prologue
     const/4 v1, 0x0
 
-    .line 153
-    iget-boolean v0, p0, Lcom/google/ads/i;->e:Z
+    .line 146
+    iget-object v0, p0, Lcom/google/ads/i;->f:Ljava/lang/ref/WeakReference;
 
-    if-eqz v0, :cond_0
+    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
 
-    .line 157
-    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
+    move-result-object v2
 
-    invoke-virtual {v0}, Lcom/google/ads/d;->g()Lcom/google/ads/c;
+    check-cast v2, Landroid/app/Activity;
+
+    .line 147
+    if-nez v2, :cond_0
+
+    .line 148
+    new-instance v0, Lcom/google/ads/i$a;
+
+    const-string v1, "Activity became null while trying to instantiate adapter."
+
+    invoke-direct {v0, v1}, Lcom/google/ads/i$a;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 151
+    :cond_0
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0, p1}, Lcom/google/ads/h;->a(Lcom/google/ads/mediation/MediationAdapter;)V
+
+    .line 156
+    invoke-interface {p1}, Lcom/google/ads/mediation/MediationAdapter;->getServerParametersType()Ljava/lang/Class;
 
     move-result-object v0
 
     .line 158
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_5
 
     .line 159
-    invoke-virtual {v0}, Lcom/google/ads/c;->b()V
+    invoke-virtual {v0}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
 
-    .line 163
-    :goto_0
-    iput-boolean v1, p0, Lcom/google/ads/i;->e:Z
+    move-result-object v0
+
+    check-cast v0, Lcom/google/ads/mediation/MediationServerParameters;
+
+    .line 160
+    iget-object v3, p0, Lcom/google/ads/i;->d:Ljava/util/HashMap;
+
+    invoke-virtual {v0, v3}, Lcom/google/ads/mediation/MediationServerParameters;->load(Ljava/util/Map;)V
+
+    move-object v3, v0
 
     .line 166
-    :cond_0
-    iget-boolean v0, p0, Lcom/google/ads/i;->f:Z
+    :goto_0
+    invoke-interface {p1}, Lcom/google/ads/mediation/MediationAdapter;->getAdditionalParametersType()Ljava/lang/Class;
 
-    if-eqz v0, :cond_1
-
-    .line 167
-    invoke-static {p1}, Lcom/google/ads/a;->a(Landroid/webkit/WebView;)V
+    move-result-object v0
 
     .line 168
-    iput-boolean v1, p0, Lcom/google/ads/i;->f:Z
+    if-eqz v0, :cond_4
 
-    .line 170
+    .line 169
+    iget-object v1, p0, Lcom/google/ads/i;->c:Lcom/google/ads/AdRequest;
+
+    invoke-virtual {v1, v0}, Lcom/google/ads/AdRequest;->getNetworkExtras(Ljava/lang/Class;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/ads/mediation/NetworkExtras;
+
+    move-object v5, v0
+
+    .line 174
+    :goto_1
+    new-instance v4, Lcom/google/ads/mediation/MediationAdRequest;
+
+    iget-object v0, p0, Lcom/google/ads/i;->c:Lcom/google/ads/AdRequest;
+
+    iget-boolean v1, p0, Lcom/google/ads/i;->e:Z
+
+    invoke-direct {v4, v0, v2, v1}, Lcom/google/ads/mediation/MediationAdRequest;-><init>(Lcom/google/ads/AdRequest;Landroid/content/Context;Z)V
+
+    .line 178
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    iget-object v0, v0, Lcom/google/ads/h;->a:Lcom/google/ads/internal/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/internal/h;->a()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 179
+    instance-of v0, p1, Lcom/google/ads/mediation/MediationInterstitialAdapter;
+
+    if-nez v0, :cond_1
+
+    .line 180
+    new-instance v0, Lcom/google/ads/i$a;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Adapter "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " doesn\'t support the MediationInterstitialAdapter"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " interface."
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lcom/google/ads/i$a;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
     :cond_1
+    move-object v0, p1
+
+    .line 184
+    check-cast v0, Lcom/google/ads/mediation/MediationInterstitialAdapter;
+
+    .line 186
+    new-instance v1, Lcom/google/ads/k;
+
+    iget-object v6, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    invoke-direct {v1, v6}, Lcom/google/ads/k;-><init>(Lcom/google/ads/h;)V
+
+    invoke-interface/range {v0 .. v5}, Lcom/google/ads/mediation/MediationInterstitialAdapter;->requestInterstitialAd(Lcom/google/ads/mediation/MediationInterstitialListener;Landroid/app/Activity;Lcom/google/ads/mediation/MediationServerParameters;Lcom/google/ads/mediation/MediationAdRequest;Lcom/google/ads/mediation/NetworkExtras;)V
+
+    .line 206
+    :goto_2
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/h;->k()V
+
+    .line 207
     return-void
 
-    .line 161
+    .line 193
     :cond_2
-    const-string v0, "adLoader was null while trying to setFinishedLoadingHtml()."
+    instance-of v0, p1, Lcom/google/ads/mediation/MediationBannerAdapter;
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->a(Ljava/lang/String;)V
+    if-nez v0, :cond_3
 
-    goto :goto_0
+    .line 194
+    new-instance v0, Lcom/google/ads/i$a;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Adapter "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " doesn\'t support the MediationBannerAdapter interface"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lcom/google/ads/i$a;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    :cond_3
+    move-object v6, p1
+
+    .line 197
+    check-cast v6, Lcom/google/ads/mediation/MediationBannerAdapter;
+
+    .line 199
+    new-instance v7, Lcom/google/ads/j;
+
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    invoke-direct {v7, v0}, Lcom/google/ads/j;-><init>(Lcom/google/ads/h;)V
+
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
+
+    iget-object v0, v0, Lcom/google/ads/h;->a:Lcom/google/ads/internal/h;
+
+    invoke-virtual {v0}, Lcom/google/ads/internal/h;->b()Lcom/google/ads/AdSize;
+
+    move-result-object v10
+
+    move-object v8, v2
+
+    move-object v9, v3
+
+    move-object v11, v4
+
+    move-object v12, v5
+
+    invoke-interface/range {v6 .. v12}, Lcom/google/ads/mediation/MediationBannerAdapter;->requestBannerAd(Lcom/google/ads/mediation/MediationBannerListener;Landroid/app/Activity;Lcom/google/ads/mediation/MediationServerParameters;Lcom/google/ads/AdSize;Lcom/google/ads/mediation/MediationAdRequest;Lcom/google/ads/mediation/NetworkExtras;)V
+
+    goto :goto_2
+
+    :cond_4
+    move-object v5, v1
+
+    goto/16 :goto_1
+
+    :cond_5
+    move-object v3, v1
+
+    goto/16 :goto_0
 .end method
 
-.method public final shouldOverrideUrlLoading(Landroid/webkit/WebView;Ljava/lang/String;)Z
-    .locals 5
-    .parameter "webView"
-    .parameter "url"
+.method private a(Ljava/lang/String;Ljava/lang/Throwable;Lcom/google/ads/g$a;)V
+    .locals 2
+    .parameter
+    .parameter
+    .parameter
 
     .prologue
-    const/4 v1, 0x1
+    .line 136
+    invoke-static {p1, p2}, Lcom/google/ads/util/b;->b(Ljava/lang/String;Ljava/lang/Throwable;)V
 
-    .line 84
-    new-instance v0, Ljava/lang/StringBuilder;
+    .line 137
+    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/h;
 
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    const/4 v1, 0x0
 
-    const-string v2, "shouldOverrideUrlLoading(\""
+    invoke-virtual {v0, v1, p3}, Lcom/google/ads/h;->a(ZLcom/google/ads/g$a;)V
 
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 138
+    return-void
+.end method
 
-    move-result-object v0
+.method private static a(Ljava/util/Map;)Z
+    .locals 3
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/Map",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;)Z"
+        }
+    .end annotation
 
-    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .prologue
+    .line 67
+    const-string v0, "gwhirl_share_location"
 
-    move-result-object v0
-
-    const-string v2, "\")"
-
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/google/ads/util/a;->a(Ljava/lang/String;)V
-
-    .line 87
-    invoke-static {p2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
-
-    move-result-object v2
-
-    .line 91
-    invoke-static {v2}, Lcom/google/ads/util/AdUtil;->b(Landroid/net/Uri;)Ljava/util/HashMap;
-
-    move-result-object v0
-
-    .line 92
-    if-nez v0, :cond_0
-
-    .line 93
-    const-string v0, "An error occurred while parsing the url parameters."
-
-    invoke-static {v0}, Lcom/google/ads/util/a;->e(Ljava/lang/String;)V
-
-    move v0, v1
-
-    .line 141
-    :goto_0
-    return v0
-
-    .line 96
-    :cond_0
-    const-string v3, "ai"
-
-    invoke-virtual {v0, v3}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-interface {p0, v0}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Ljava/lang/String;
 
-    .line 97
+    .line 68
+    const-string v1, "1"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 69
+    const/4 v0, 0x1
+
+    .line 79
+    :goto_0
+    return v0
+
+    .line 73
+    :cond_0
     if-eqz v0, :cond_1
 
-    .line 98
-    iget-object v3, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
+    const-string v1, "0"
 
-    invoke-virtual {v3}, Lcom/google/ads/d;->l()Lcom/google/ads/f;
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result-object v3
+    move-result v1
 
-    invoke-virtual {v3, v0}, Lcom/google/ads/f;->a(Ljava/lang/String;)V
+    if-nez v1, :cond_1
 
-    .line 102
-    :cond_1
-    invoke-static {v2}, Lcom/google/ads/a;->a(Landroid/net/Uri;)Z
+    .line 74
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    move-result v0
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    if-eqz v0, :cond_2
+    const-string v2, "Received an illegal value, \'"
 
-    .line 103
-    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v3, p0, Lcom/google/ads/i;->b:Ljava/util/Map;
+    move-result-object v1
 
-    invoke-static {v0, v3, v2, p1}, Lcom/google/ads/a;->a(Lcom/google/ads/d;Ljava/util/Map;Landroid/net/Uri;Landroid/webkit/WebView;)V
-
-    move v0, v1
-
-    .line 104
-    goto :goto_0
-
-    .line 105
-    :cond_2
-    iget-boolean v0, p0, Lcom/google/ads/i;->d:Z
-
-    if-eqz v0, :cond_4
-
-    .line 107
-    invoke-static {v2}, Lcom/google/ads/util/AdUtil;->a(Landroid/net/Uri;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_3
-
-    .line 110
-    invoke-super {p0, p1, p2}, Landroid/webkit/WebViewClient;->shouldOverrideUrlLoading(Landroid/webkit/WebView;Ljava/lang/String;)Z
-
-    move-result v0
-
-    goto :goto_0
-
-    .line 113
-    :cond_3
-    new-instance v0, Ljava/util/HashMap;
-
-    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
-
-    .line 114
-    const-string v2, "u"
-
-    invoke-virtual {v0, v2, p2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 115
-    iget-object v2, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
-
-    new-instance v3, Lcom/google/ads/e;
-
-    const-string v4, "intent"
-
-    invoke-direct {v3, v4, v0}, Lcom/google/ads/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
-
-    invoke-static {v2, v3}, Lcom/google/ads/AdActivity;->launchAdActivity(Lcom/google/ads/d;Lcom/google/ads/e;)V
-
-    move v0, v1
-
-    .line 118
-    goto :goto_0
-
-    .line 120
-    :cond_4
-    iget-boolean v0, p0, Lcom/google/ads/i;->c:Z
-
-    if-eqz v0, :cond_6
-
-    .line 124
-    iget-object v0, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
-
-    invoke-virtual {v0}, Lcom/google/ads/d;->w()Z
-
-    move-result v0
-
-    .line 125
-    if-eqz v0, :cond_5
-
-    invoke-static {v2}, Lcom/google/ads/util/AdUtil;->a(Landroid/net/Uri;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_5
-
-    .line 126
-    const-string v0, "webapp"
-
-    .line 132
-    :goto_1
-    new-instance v3, Ljava/util/HashMap;
-
-    invoke-direct {v3}, Ljava/util/HashMap;-><init>()V
-
-    .line 133
-    const-string v4, "u"
-
-    invoke-virtual {v2}, Landroid/net/Uri;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v3, v4, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 134
-    iget-object v2, p0, Lcom/google/ads/i;->a:Lcom/google/ads/d;
-
-    new-instance v4, Lcom/google/ads/e;
-
-    invoke-direct {v4, v0, v3}, Lcom/google/ads/e;-><init>(Ljava/lang/String;Ljava/util/HashMap;)V
-
-    invoke-static {v2, v4}, Lcom/google/ads/AdActivity;->launchAdActivity(Lcom/google/ads/d;Lcom/google/ads/e;)V
-
-    move v0, v1
-
-    .line 136
-    goto :goto_0
-
-    .line 128
-    :cond_5
-    const-string v0, "intent"
-
-    goto :goto_1
-
-    .line 138
-    :cond_6
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "URL is not a GMSG and can\'t handle URL: "
-
-    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v1, "\', for the special share location parameter from mediation server"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, " (expected \'0\' or \'1\'). Will not share the location."
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v0
 
@@ -398,10 +482,113 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Lcom/google/ads/util/a;->e(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/google/ads/util/b;->b(Ljava/lang/String;)V
 
-    move v0, v1
+    .line 79
+    :cond_1
+    const/4 v0, 0x0
 
-    .line 141
-    goto/16 :goto_0
+    goto :goto_0
+.end method
+
+
+# virtual methods
+.method public run()V
+    .locals 3
+
+    .prologue
+    .line 113
+    :try_start_0
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "Trying to instantiate: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/google/ads/util/b;->a(Ljava/lang/String;)V
+
+    .line 116
+    iget-object v0, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
+
+    const-class v1, Lcom/google/ads/mediation/MediationAdapter;
+
+    invoke-static {v0, v1}, Lcom/google/ads/g;->a(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/google/ads/mediation/MediationAdapter;
+
+    .line 119
+    invoke-direct {p0, v0}, Lcom/google/ads/i;->a(Lcom/google/ads/mediation/MediationAdapter;)V
+    :try_end_0
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 132
+    :goto_0
+    return-void
+
+    .line 120
+    :catch_0
+    move-exception v0
+
+    .line 121
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Cannot find adapter class \'"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/google/ads/i;->b:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, "\'. Did you link the ad network\'s mediation adapter? Skipping ad network."
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    sget-object v2, Lcom/google/ads/g$a;->e:Lcom/google/ads/g$a;
+
+    invoke-direct {p0, v1, v0, v2}, Lcom/google/ads/i;->a(Ljava/lang/String;Ljava/lang/Throwable;Lcom/google/ads/g$a;)V
+
+    goto :goto_0
+
+    .line 125
+    :catch_1
+    move-exception v0
+
+    .line 127
+    const-string v1, "Error while creating adapter and loading ad from ad network. Skipping ad network."
+
+    sget-object v2, Lcom/google/ads/g$a;->f:Lcom/google/ads/g$a;
+
+    invoke-direct {p0, v1, v0, v2}, Lcom/google/ads/i;->a(Ljava/lang/String;Ljava/lang/Throwable;Lcom/google/ads/g$a;)V
+
+    goto :goto_0
 .end method

@@ -1,3 +1,12 @@
+/**********************
+ * The node used to hold a codeinstance
+ * 
+ * This code was taken from the public
+ * domain and then modified for
+ * the smali project.
+ * 
+ *************************/
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

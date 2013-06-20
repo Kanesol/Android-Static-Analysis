@@ -1,3 +1,10 @@
+/*
+ * This class handles most of the 
+ * file operations for SmaliReader
+ * 
+ * @version 1.0
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,17 +24,17 @@ public class SmaliIO {
 		foundInstanceFilename = null;
 	}
 	
+	//This method retrieves the file after
+	//Receiving a path
 	public ArrayList<String> getFileText(Path path)
 	{
-		//Path path = FileSystems.getDefault().getPath(dir, file);
 		
-		//FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\");
 		path = FileSystems.getDefault().getPath(System.getProperty("user.dir") + "\\smali\\" + path.toString());
-		//System.out.println(path.toString());
-	    
+			    
 	    return readFile(path);
 	}
 	
+	//This method returns a file based on a keyword to be found
 	public ArrayList<String> findInstance(CodeInstance keyword)
 	{
 		FileTraversal fileTraversal = new FileTraversal(System.getProperty("user.dir") + "\\smali\\");
@@ -40,7 +47,7 @@ public class SmaliIO {
 			ArrayList<String> fileText = readFile(path);
 			for(String line : fileText)
 			{
-				if(line.contains(keyword.getInstanceName()))
+				if(line.contains(keyword.getInstanceName()) && line.contains(keyword.getPackageName()))
 				{
 					foundInstanceFilename = path;
 					return fileText;
@@ -51,6 +58,7 @@ public class SmaliIO {
 		return null;
 	}
 	
+	//Reads in the file
 	private ArrayList<String> readFile(Path path)
 	{
 		ArrayList<String> fileText = new ArrayList<String>();

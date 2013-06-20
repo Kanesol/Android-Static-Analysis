@@ -36,7 +36,7 @@
 
 
 # instance fields
-.field private a:Ljava/lang/String;
+.field private final a:Ljava/lang/String;
 
 
 # direct methods
@@ -52,18 +52,18 @@
 
     const/4 v3, 0x0
 
-    .line 40
+    .line 60
     new-instance v0, Lcom/google/ads/AdRequest$ErrorCode;
 
     const-string v1, "INVALID_REQUEST"
 
-    const-string v2, "Invalid Google Ad request."
+    const-string v2, "Invalid Ad request."
 
     invoke-direct {v0, v1, v3, v2}, Lcom/google/ads/AdRequest$ErrorCode;-><init>(Ljava/lang/String;ILjava/lang/String;)V
 
     sput-object v0, Lcom/google/ads/AdRequest$ErrorCode;->INVALID_REQUEST:Lcom/google/ads/AdRequest$ErrorCode;
 
-    .line 46
+    .line 66
     new-instance v0, Lcom/google/ads/AdRequest$ErrorCode;
 
     const-string v1, "NO_FILL"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/google/ads/AdRequest$ErrorCode;->NO_FILL:Lcom/google/ads/AdRequest$ErrorCode;
 
-    .line 52
+    .line 72
     new-instance v0, Lcom/google/ads/AdRequest$ErrorCode;
 
     const-string v1, "NETWORK_ERROR"
@@ -85,7 +85,7 @@
 
     sput-object v0, Lcom/google/ads/AdRequest$ErrorCode;->NETWORK_ERROR:Lcom/google/ads/AdRequest$ErrorCode;
 
-    .line 58
+    .line 78
     new-instance v0, Lcom/google/ads/AdRequest$ErrorCode;
 
     const-string v1, "INTERNAL_ERROR"
@@ -96,7 +96,7 @@
 
     sput-object v0, Lcom/google/ads/AdRequest$ErrorCode;->INTERNAL_ERROR:Lcom/google/ads/AdRequest$ErrorCode;
 
-    .line 36
+    .line 56
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/google/ads/AdRequest$ErrorCode;
@@ -136,13 +136,13 @@
     .end annotation
 
     .prologue
-    .line 68
+    .line 88
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 69
+    .line 89
     iput-object p3, p0, Lcom/google/ads/AdRequest$ErrorCode;->a:Ljava/lang/String;
 
-    .line 70
+    .line 90
     return-void
 .end method
 
@@ -151,7 +151,7 @@
     .parameter "name"
 
     .prologue
-    .line 36
+    .line 56
     const-class v0, Lcom/google/ads/AdRequest$ErrorCode;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -167,7 +167,7 @@
     .locals 1
 
     .prologue
-    .line 36
+    .line 56
     sget-object v0, Lcom/google/ads/AdRequest$ErrorCode;->b:[Lcom/google/ads/AdRequest$ErrorCode;
 
     invoke-virtual {v0}, [Lcom/google/ads/AdRequest$ErrorCode;->clone()Ljava/lang/Object;
@@ -181,11 +181,11 @@
 
 
 # virtual methods
-.method public final toString()Ljava/lang/String;
+.method public toString()Ljava/lang/String;
     .locals 1
 
     .prologue
-    .line 79
+    .line 99
     iget-object v0, p0, Lcom/google/ads/AdRequest$ErrorCode;->a:Ljava/lang/String;
 
     return-object v0
