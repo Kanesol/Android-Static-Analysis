@@ -1,0 +1,18 @@
+{
+  "summary": {
+    "owner": "me",
+    "description": "stuff",
+    "title": "threat model v1"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "new",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ],
+    "reviewer": "dave"
+  }
+}
